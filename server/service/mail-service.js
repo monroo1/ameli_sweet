@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const ApiError = require("../exceptions/api-error");
 //AmeliCake
 
 class MailService {
@@ -20,19 +21,17 @@ class MailService {
         from: process.env.SMPT_USER,
         to,
         subject: "Активация аккаунта на " + process.env.API_URL,
-  
+
         html: `
           <div>
-            <h1>Привет ${name}!</h1>
-            <p>Для активации перейдите по ссылке.</p>
+            <h1>Привет, ${name}!</h1>
+            <p>Для активации аккаунта перейдите по ссылке.</p>
             <a href="${link}">${link}</a>
           </div>
         `,
       });
-    } catch(e) {
-      throw ApiError.BadRequest(
-        `Ошибка при отправки письма на почту`
-      );
+    } catch (e) {
+      throw ApiError.BadRequest(`Ошибка при отправки письма на почту`);
     }
   }
 }
