@@ -13,8 +13,16 @@ class ProductsService {
     return product;
   }
 
-  async getAllProduct() {
-    const products = await ProductModel.find();
+  async getAllProduct(req) {
+    let products;
+    if (req.query.filter === "promo") {
+      products = await ProductModel.find({ promoPrice: { $gt: 0 } });
+    } else if (req.query.filter === "buyNow") {
+      products = await ProductModel.find({ quantityInStock: { $gt: 0 } });
+    } else {
+      products = await ProductModel.find();
+    }
+
     return products;
   }
 

@@ -14,7 +14,7 @@ router.post(
   body("price").isLength({ min: 2 }),
   body("description").isLength({ min: 10 }),
   body("isStock").isBoolean(),
-  //   authMiddleware
+  authMiddleware,
   productsController.createProduct
 );
 

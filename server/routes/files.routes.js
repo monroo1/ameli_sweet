@@ -11,13 +11,19 @@ const store = multer.diskStorage({
     cb(null, "./uploads");
   },
   filename(req, file, cb) {
+    console.log(file);
     cb(null, Date.now() + "_" + file.originalname);
   },
 });
 
-const uploadFiles = multer({ storage: store }).array("file");
+const uploadFiles = multer({ storage: store }).array("image");
 
-router.post("/download", uploadFiles, filesController.downloadImage);
+router.post(
+  "/download",
+  // authMiddleware,
+  uploadFiles,
+  filesController.downloadImage
+);
 router.delete("/delete/:id", authMiddleware, filesController.deleteImage);
 
 module.exports = router;

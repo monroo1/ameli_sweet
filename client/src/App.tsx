@@ -1,41 +1,58 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import Main from "./components/Main";
-import Header from "./components/Header"
+import Header from "./components/header/Header";
 import "./App.css";
-import { useAppDispatch } from "./hooks/redux";
+import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import { useRefreshQuery } from "./services/AuthService";
 import { setUser } from "./store/reducers/AuthSlice";
+import CreateProduct from "./components/CreateProduct";
+import MainPage from "./components/pages/mainPage/MainPage";
+import ProductPage from "./components/pages/productPage/ProductPage";
+import PersonalPage from "./components/pages/personalPage/PersonalPage";
+import { PrivateRoute } from "./components/pages/routes";
 
 function App() {
-  const [skip, setSkip] = useState(true);
-  const {data, isLoading} = useRefreshQuery({},{skip});
   const dispatch = useAppDispatch();
-  
-  useEffect(() => {
-      if(localStorage.getItem("token")){
-        setSkip(false);
-      }
-  },[])
+
+  const [skip, setSkip] = useState(true);
+  const { data, isLoading } = useRefreshQuery({}, { skip });
 
   useEffect(() => {
-    if(data){
+    if (localStorage.getItem("token")) {
+      setSkip(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
       setSkip(true);
       dispatch(setUser(data));
     }
-  },[data])
+  }, [data]);
 
   return (
     <div className="App">
-        <Header />
+      <Header />
+      <main>
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/registration" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="registration" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="create" element={<CreateProduct />} />
+          <Route path="product/:productId" element={<ProductPage />} />
+          <Route
+            path="lk"
+            element={
+              <PrivateRoute>
+                <PersonalPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
-        <footer></footer>
+      </main>
+      <footer></footer>
     </div>
   );
 }
