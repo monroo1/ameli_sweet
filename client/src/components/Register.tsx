@@ -5,6 +5,7 @@ import { useAppDispatch } from "../hooks/redux";
 import { useRegistrationMutation } from "../services/AuthService";
 import { setError, setUser } from "../store/reducers/AuthSlice";
 import { UserRegisterResponse } from "../models/User";
+import React from "react";
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -14,21 +15,25 @@ const Register = () => {
   const [phone, setPhone] = useState(7);
   const [password, setPassword] = useState("");
 
-  const [registration, {isLoading}] = useRegistrationMutation();
+  const [registration, { isLoading }] = useRegistrationMutation();
 
   const handleClick = async () => {
     try {
-      const fetchRegistration: UserRegisterResponse = await registration({email, name, phone, password}).unwrap();
-        dispatch(setUser(fetchRegistration));
-        navigate("/");
-      
+      const fetchRegistration: UserRegisterResponse = await registration({
+        email,
+        name,
+        phone,
+        password,
+      }).unwrap();
+      dispatch(setUser(fetchRegistration));
+      navigate("/");
     } catch (e: any) {
       dispatch(setError(e.data.message));
     }
   };
 
   return (
-    <div className="flex flex-col items-center w-1/6 gap-5 mx-auto mt-6" >
+    <div className="flex flex-col items-center w-1/6 gap-5 mx-auto mt-6">
       <h1>Регистрация</h1>
       <TextField
         id="reg-email"
@@ -67,7 +72,7 @@ const Register = () => {
         className="w-full"
       />
       <div className="flex justify-between w-full">
-        <p>Уже зарегистрированы?</p> 
+        <p>Уже зарегистрированы?</p>
         <Link to="/login">
           <Button variant="outlined" size="small">
             Sign in

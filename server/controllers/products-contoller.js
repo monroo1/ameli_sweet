@@ -5,7 +5,7 @@ const ApiError = require("../exceptions/api-error");
 class ProductsController {
   async getProducts(req, res, next) {
     try {
-      const products = await productsService.getAllProduct();
+      const products = await productsService.getAllProduct(req);
       return res.json(products);
     } catch (e) {
       next(e);

@@ -5,7 +5,11 @@ const filesService = require("../service/files-service");
 class FilesController {
   async downloadImage(req, res, next) {
     try {
-      console.log(req.body);
+      const arr = [];
+      req.files.map((el) =>
+        arr.push({ name: el.originalname, href: "/uploads/" + el.filename })
+      );
+      return res.json(arr);
     } catch (e) {
       next(e);
     }

@@ -1,0 +1,101 @@
+.card {
+  width: 285px;
+  height: 413px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  position: relative;
+  box-shadow: 0px 7px 19px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  background-color: white;
+  color: black;
+
+  &-background {
+    background-color: rgba(24, 24, 24, 0.548);
+    transition: 0.2s all ease-out;
+    position: absolute;
+    top: 0;
+    border-radius: 12px;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd8da;
+
+    & > .button-big {
+      border: 1px solid #ffd8da;
+      padding: 8px 16px;
+      transition: 0.2s all ease-out;
+
+      &:hover {
+        background-color: #a6deff4b;
+        transform: scale(1.1, 1.1);
+      }
+    }
+  }
+
+  &-image {
+    width: 100%;
+    height: 320px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.2s all ease-out;
+
+    & > img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    transition: 0.2s all ease-out;
+
+    &--price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & span {
+        font-weight: 700;
+        font-size: 24px;
+      }
+
+      & > div {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        & > p {
+          font-size: 20px;
+          font-weight: 500;
+          text-decoration: line-through;
+          color: grey;
+        }
+      }
+    }
+  }
+  &:hover {
+    transform: scale(1.1, 1.1);
+
+    & .card-image--hover {
+      height: 413px;
+    }
+
+    & .card-info--hover {
+      color: #ffd8da;
+    }
+
+    & .card-background--hover {
+      opacity: 1;
+    }
+  }
+}

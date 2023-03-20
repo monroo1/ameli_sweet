@@ -1,12 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Reset and base styles  */
 * {
   padding: 0px;
   margin: 0px;
   border: none;
+  font-family: "Source Sans Pro", sans-serif;
+  letter-spacing: 0.5px;
 }
 
 *,
@@ -124,4 +121,9 @@ label {
 
 legend {
   display: block;
+}
+
+main {
+  max-width: 1230px;
+  margin: 32px auto;
 }
