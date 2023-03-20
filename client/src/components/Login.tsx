@@ -1,7 +1,7 @@
 import react, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { TextField } from "@mui/material";
-import Button from "./UI/Button";
+import { TextField, Button } from "@mui/material";
+// import Button from "./UI/Button";
 import { useLoginMutation } from "../services/AuthService";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { setUser, setError } from "../store/reducers/AuthSlice";
@@ -53,12 +53,12 @@ const Login = () => {
       <div className="flex justify-between w-full">
         <p>Еще не зарегистрированы?</p>
         <Link to="/registration">
-          <Button value="Войти" variant="contained" />
+          <Button variant="contained">SIGN UP</Button>
         </Link>
       </div>
-      <button onClick={handleClick}>aaaaa</button>
-
-      <Button value="Войти" variant="outlined" />
+      <Button variant="outlined" onClick={handleClick}>
+        Войти
+      </Button>
     </div>
   ) : (
     <Navigate to={"/"} />
