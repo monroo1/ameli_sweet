@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
 import { CSSProperties, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetFromIdQuery } from "../../../services/ProductsService";
-import { IFile } from "../../../models/Product";
+import { useGetFromIdQuery } from "../../services/ProductsService";
+import { IFile } from "../../models/Product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { Divider } from "@mui/material";
+
+import { API_URL } from "../../store/indexService";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -13,7 +15,6 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import "./productPage.scss";
-import { API_URL } from "../../../store/indexService";
 
 const ProductPage = () => {
   const { productId } = useParams();

@@ -6,8 +6,8 @@ import { persistor, store } from "./store/store";
 import CreateProduct from "./components/CreateProduct";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import ProductPage from "./components/pages/productPage/ProductPage";
-import PersonalPage from "./components/pages/personalPage/PersonalPage";
+import ProductPage from "./pages/productPage/ProductPage";
+import PersonalPage from "./pages/personalPage/PersonalPage";
 import { PersistGate } from "redux-persist/integration/react";
 
 // const store = setupStore();

@@ -24,6 +24,7 @@ const Register = () => {
         name,
         phone,
         password,
+        role: "user",
       }).unwrap();
       dispatch(setUser(fetchRegistration));
       navigate("/");

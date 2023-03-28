@@ -10,6 +10,7 @@ router.post(
   body("password").isLength({ min: 5, max: 15 }),
   body("phone").isMobilePhone(),
   body("name").isLength({ min: 2, max: 15 }),
+  body("role").isLength({ min: 4, max: 5 }),
   userController.registration
 );
 router.post("/login", userController.login);

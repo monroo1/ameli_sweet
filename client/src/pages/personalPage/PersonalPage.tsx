@@ -1,9 +1,9 @@
-import { useAppSelector, useAppDispatch } from "../../../hooks/redux";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import {
   useLogoutMutation,
   useGetUsersMutation,
-} from "../../../services/AuthService";
-import { setLogout } from "../../../store/reducers/AuthSlice";
+} from "../../services/AuthService";
+import { setLogout } from "../../store/reducers/AuthSlice";
 
 const PersonalPage = () => {
   const dispatch = useAppDispatch();

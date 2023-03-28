@@ -4,6 +4,7 @@ export interface IUser {
   isActivated: boolean;
   name: string;
   phone: string;
+  role: string;
 }
 
 export interface UserRegisterResponse {

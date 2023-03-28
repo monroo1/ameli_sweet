@@ -1,6 +1,5 @@
 const filesService = require("../service/files-service");
-// const { validationResult } = require("express-validator");
-// const ApiError = require("../exceptions/api-error");
+const fs = require("fs");
 
 class FilesController {
   async downloadImage(req, res, next) {
@@ -16,6 +15,10 @@ class FilesController {
   }
   async deleteImage(req, res, next) {
     try {
+      const result = await filesService.deleteFile(req.params.id);
+      const href = result.find.images.filter((el) => el.name === req.params.id);
+      fs.unlink("." + href[0].href, (err) => console.log(err));
+      return res.json(result.candidate);
     } catch (e) {
       next(e);
     }

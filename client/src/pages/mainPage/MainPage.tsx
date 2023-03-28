@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppDispatch } from "../../../hooks/redux";
-import { useGetAllQuery } from "../../../services/ProductsService";
-import { IProduct } from "../../../models/Product";
-import ProductCard from "../../products/ProductCard";
+import { useAppDispatch } from "../../hooks/redux";
+import { useGetAllQuery } from "../../services/ProductsService";
+import { IProduct } from "../../models/Product";
+import ProductCard from "../../components/products/ProductCard";
 
 import "./mainPage.scss";
 

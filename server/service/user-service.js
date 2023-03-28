@@ -7,17 +7,17 @@ const UserDto = require("../dtos/user-dto");
 const ApiError = require("../exceptions/api-error");
 
 class UserService {
-  async registration(email, password, phone, name) {
+  async registration(email, password, phone, name, role) {
     const candidateEmail = await UserModel.findOne({ email });
     const candidatePhone = await UserModel.findOne({ phone });
     if (candidateEmail) {
       throw ApiError.BadRequest(
-        `Пользователь с таким email (${email}) уже был создан `
+        `Пользователь с таким email (${email}) уже был создан. `
       );
     }
     if (candidatePhone) {
       throw ApiError.BadRequest(
-        `Пользователь с таким номером телефона (${phone}) уже был создан `
+        `Пользователь с таким номером телефона (${phone}) уже был создан. `
       );
     }
     const hashPassword = await bcrypt.hash(password, 8);
@@ -27,6 +27,7 @@ class UserService {
       password: hashPassword,
       phone,
       name,
+      role,
       activationLink,
     });
     await mailService.sendActivationMail(
@@ -47,7 +48,7 @@ class UserService {
   async activate(activationLink) {
     const user = await UserModel.findOne({ activationLink });
     if (!user) {
-      throw ApiError.BadRequest("Неккоректная ссылка активации");
+      throw ApiError.BadRequest("Неккоректная ссылка активации.");
     }
     user.isActivated = true;
     await user.save();
@@ -56,11 +57,11 @@ class UserService {
   async login(email, password) {
     const user = await UserModel.findOne({ email });
     if (!user) {
-      throw ApiError.BadRequest("Пользователь с данным email не найден");
+      throw ApiError.BadRequest("Пользователь с данным email не найден.");
     }
     const isPassEquals = await bcrypt.compare(password, user.password);
     if (!isPassEquals) {
-      throw ApiError.BadRequest("Неверный пароль");
+      throw ApiError.BadRequest("Неверный пароль.");
     }
     const userDto = new UserDto(user);
     const tokens = tokenService.generateTokens({ ...userDto });

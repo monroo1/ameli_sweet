@@ -5,6 +5,7 @@ const User = new Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   phone: { type: Number, required: true, unique: true },
+  role: { type: String, required: true },
   avatar: { type: String },
   basket: { type: Types.ObjectId, ref: "Basket" },
   orders: [{ type: Types.ObjectId, ref: "Order" }],

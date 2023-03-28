@@ -4,12 +4,12 @@ export const productsService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAll: builder.query<any, void>({
       query: () => ({
-        url: "/api/products/get",
+        url: "/api/products/",
       }),
     }),
     getFromId: builder.query({
       query: (id) => ({
-        url: `/api/products/get/${id}`,
+        url: `/api/products/${id}`,
       }),
     }),
     create: builder.mutation({

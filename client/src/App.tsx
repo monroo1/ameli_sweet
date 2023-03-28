@@ -8,10 +8,10 @@ import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import { useRefreshQuery } from "./services/AuthService";
 import { setUser } from "./store/reducers/AuthSlice";
 import CreateProduct from "./components/CreateProduct";
-import MainPage from "./components/pages/mainPage/MainPage";
-import ProductPage from "./components/pages/productPage/ProductPage";
-import PersonalPage from "./components/pages/personalPage/PersonalPage";
-import { PrivateRoute } from "./components/pages/routes";
+import MainPage from "./pages/mainPage/MainPage";
+import ProductPage from "./pages/productPage/ProductPage";
+import PersonalPage from "./pages/personalPage/PersonalPage";
+import { AdminRoute, PrivateRoute } from "./components/routes";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -40,7 +40,16 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="registration" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="create" element={<CreateProduct />} />
+          <Route
+            path="create"
+            element={
+              <PrivateRoute>
+                <AdminRoute>
+                  <CreateProduct />
+                </AdminRoute>
+              </PrivateRoute>
+            }
+          />
           <Route path="product/:productId" element={<ProductPage />} />
           <Route
             path="lk"

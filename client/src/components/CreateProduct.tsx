@@ -44,10 +44,6 @@ const CreateProduct = () => {
     console.log(res);
   };
 
-  // useEffect(() => {
-  //   console.log(product);
-  // }, [product]);
-
   return (
     <div className="max-w-screen-xl mx-auto h-full flex gap-5">
       <div className="w-1/4 flex flex-col justify-between gap-2 mt-3">

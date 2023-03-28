@@ -30,6 +30,22 @@ class ProductsService {
     const product = await ProductModel.findOne({ _id: id });
     return product;
   }
+
+  async deleteProduct(id) {
+    const candidateName = await ProductModel.findOne({ _id: id });
+    if (!candidateName) {
+      throw ApiError.BadRequest(`Такого товара ( ${id} ) не существует.`);
+    }
+
+    const result = await ProductModel.find({ _id: id }).remove().exec();
+    return result;
+  }
+
+  async patchProduct(id, body) {
+    await ProductModel.findOne({ _id: id }).update(body);
+    const result = await ProductModel.findOne({ _id: id });
+    return result;
+  }
 }
 
 module.exports = new ProductsService();

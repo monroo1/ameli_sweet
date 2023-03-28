@@ -20,7 +20,7 @@ const uploadFiles = multer({ storage: store }).array("image");
 
 router.post(
   "/download",
-  // authMiddleware,
+  authMiddleware,
   uploadFiles,
   filesController.downloadImage
 );

@@ -12,6 +12,7 @@ const initialState: State = {
   error: "",
   isAuth: false,
   email: "",
+  role: "user",
   id: "",
   isActivated: false,
   name: "",
@@ -32,6 +33,7 @@ export const authSlice = createSlice({
       state.isActivated = action.payload.user.isActivated;
       state.name = action.payload.user.name;
       state.phone = action.payload.user.phone;
+      state.role = action.payload.user.role;
     },
     setLogout: (state) => {
       localStorage.removeItem("token");
@@ -43,6 +45,7 @@ export const authSlice = createSlice({
       state.isActivated = false;
       state.name = "";
       state.phone = "";
+      state.role = "user";
     },
     setError: (state, action) => {
       state.error = action.payload;

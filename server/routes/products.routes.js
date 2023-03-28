@@ -4,9 +4,9 @@ const router = new Router();
 const { body } = require("express-validator");
 const authMiddleware = require("../middlewares/auth-middleware");
 
-router.get("/get", productsController.getProducts);
+router.get("/", productsController.getProducts);
 
-router.get("/get/:id", productsController.getProduct);
+router.get("/:id", productsController.getProduct);
 
 router.post(
   "/create",
@@ -18,16 +18,8 @@ router.post(
   productsController.createProduct
 );
 
-router.delete(
-  "/delete/:id",
-  authMiddleware
-  // productsController.
-);
+router.delete("/delete/:id", authMiddleware, productsController.deleteProduct);
 
-router.patch(
-  "/patch/:id",
-  authMiddleware
-  // productsController.
-);
+router.patch("/patch/:id", authMiddleware, productsController.patchProduct);
 
 module.exports = router;
