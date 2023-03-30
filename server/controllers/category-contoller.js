@@ -21,7 +21,19 @@ class CategoryController {
 
   async deleteCategory(req, res, next) {
     try {
-      const result = await categoryService.deleteCategory(req.params.id);
+      const result = await categoryService.deleteCategory(req.params.name);
+      return res.json(result);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async patchCategory(req, res, next) {
+    try {
+      const result = await categoryService.patchCategory(
+        req.params.name,
+        req.query.newName
+      );
       return res.json(result);
     } catch (e) {
       next(e);

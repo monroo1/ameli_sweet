@@ -4,10 +4,16 @@ const authMiddleware = require("../middlewares/auth-middleware");
 
 const router = new Router();
 
-router.get("/", authMiddleware, categoryController.getCategories);
+router.get("/", categoryController.getCategories);
 
 router.post("/create", authMiddleware, categoryController.createCategory);
 
-router.delete("/delete/:id", authMiddleware, categoryController.deleteCategory);
+router.delete(
+  "/delete/:name",
+  authMiddleware,
+  categoryController.deleteCategory
+);
+
+router.patch("/patch/:name", authMiddleware, categoryController.patchCategory);
 
 module.exports = router;

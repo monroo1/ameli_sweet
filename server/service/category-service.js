@@ -18,15 +18,30 @@ class CategoryService {
     return categories;
   }
 
-  async deleteCategory(id) {
-    const candidateName = await CategoryModel.findOne({ name: id });
+  async deleteCategory(name) {
+    const candidateName = await CategoryModel.findOne({ name: name });
 
     if (!candidateName) {
-      throw ApiError.BadRequest(`Такой категории ( ${id} ) не существует.`);
+      throw ApiError.BadRequest(`Такой категории ( ${name} ) не существует.`);
     }
 
-    const result = await CategoryModel.find({ name: id }).remove().exec();
+    const result = await CategoryModel.find({ name: name }).remove().exec();
     return result;
+  }
+
+  async patchCategory(name, newName) {
+    const candidateName = await CategoryModel.findOne({ name: name });
+
+    if (!candidateName) {
+      throw ApiError.BadRequest(`Такой категории ( ${name} ) не существует.`);
+    }
+
+    await CategoryModel.findOneAndUpdate(
+      { name: name },
+      { $set: { name: newName } }
+    );
+
+    return { name: newName, status: "ok" };
   }
 }
 
