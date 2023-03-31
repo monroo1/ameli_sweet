@@ -5,12 +5,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const errorMiddleware = require("./middlewares/error-middleware");
-
-const authRouter = require("./routes/auth.routes");
-const productsRouter = require("./routes/products.routes");
-const filesRouter = require("./routes/files.routes");
-const categoryRouter = require("./routes/category.routes");
-const fillingRouter = require("./routes/filling.routes");
+const router = require("./routes");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -25,11 +20,8 @@ app.use(
   })
 );
 app.use("/uploads", express.static("./uploads"));
-app.use("/api/auth", authRouter);
-app.use("/api/products", productsRouter);
-app.use("/api/files", filesRouter);
-app.use("/api/category", categoryRouter);
-app.use("/api/filling", fillingRouter);
+app.use("/api", router);
+
 app.use(errorMiddleware);
 
 const start = async () => {
