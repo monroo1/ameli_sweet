@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch } from "../../hooks/redux";
-import { useGetAllQuery } from "../../services/ProductsService";
+import { useGetProductsQuery } from "../../services/ProductsService";
 import { IProduct } from "../../models/Product";
 import ProductCard from "../../components/products/ProductCard";
 
@@ -9,7 +9,7 @@ import "./mainPage.scss";
 const MainPage = () => {
   const dispatch = useAppDispatch();
 
-  const { data, isLoading } = useGetAllQuery();
+  const { data, isLoading } = useGetProductsQuery();
 
   return isLoading ? (
     <div>Загрузка</div>

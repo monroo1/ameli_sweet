@@ -6,8 +6,12 @@ class FilesController {
     try {
       const arr = [];
       req.files.map((el) =>
-        arr.push({ name: el.originalname, href: "/uploads/" + el.filename })
+        arr.push({
+          name: el.originalname,
+          href: "/uploads/" + el.filename,
+        })
       );
+      console.log(arr);
       return res.json(arr);
     } catch (e) {
       next(e);
@@ -15,10 +19,9 @@ class FilesController {
   }
   async deleteImage(req, res, next) {
     try {
-      const result = await filesService.deleteFile(req.params.id);
-      const href = result.find.images.filter((el) => el.name === req.params.id);
-      fs.unlink("." + href[0].href, (err) => console.log(err));
-      return res.json(result.candidate);
+      fs.unlink("./uploads/" + req.params.href, (err) => console.log(err));
+      await filesService.deleteFile(req.params.name);
+      return res.json({ status: "ok" });
     } catch (e) {
       next(e);
     }

@@ -1,19 +1,35 @@
 const ProductModel = require("../models/Product");
+const FillingModel = require("../models/Filling");
 
 class FileService {
-  async deleteFile(id) {
+  async deleteFile(href) {
     const find = await ProductModel.findOne({
-      images: { $elemMatch: { name: id } },
+      images: { $elemMatch: { href: "/uploads/" + href } },
     });
-    const candidate = await ProductModel.updateMany(
-      {
-        images: { $elemMatch: { name: id } },
-      },
-      {
-        $pull: { images: { name: id } },
-      }
-    );
-    return { candidate, find };
+    if (!!find) {
+      await ProductModel.updateMany(
+        {
+          images: { $elemMatch: { href: "/uploads/" + href } },
+        },
+        {
+          $pull: { images: { href: "/uploads/" + href } },
+        }
+      );
+    }
+    const findFilling = await FillingModel.findOne({
+      images: { $elemMatch: { href: "/uploads/" + href } },
+    });
+    if (!!findFilling) {
+      await FillingModel.updateMany(
+        {
+          images: { $elemMatch: { href: "/uploads/" + href } },
+        },
+        {
+          $pull: { images: { href: "/uploads/" + href } },
+        }
+      );
+    }
+    return;
   }
 }
 module.exports = new FileService();

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { CSSProperties, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetFromIdQuery } from "../../services/ProductsService";
+import { useGetProductQuery } from "../../services/ProductsService";
 import { IFile } from "../../models/Product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
@@ -23,7 +23,7 @@ const ProductPage = () => {
   const [thumbsSwiper, setThumbsSwiper]: any = useState(null);
   const [tabsStatus, setTabsStatus] = useState(1);
 
-  const { data, isFetching } = useGetFromIdQuery(productId);
+  const { data, isFetching } = useGetProductQuery(productId);
 
   useEffect(() => {
     if (!data && !isFetching) {

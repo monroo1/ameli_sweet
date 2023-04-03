@@ -5,6 +5,8 @@ const Product = new Schema({
   price: { type: Number, required: true },
   promoPrice: { type: Number },
   description: { type: String, required: true },
+  category: { type: Types.ObjectId, ref: "Category" },
+  fillings: [{ type: Types.ObjectId, ref: "Filling" }],
   images: [
     {
       href: { type: String, required: true },

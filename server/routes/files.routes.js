@@ -24,6 +24,6 @@ router.post(
   uploadFiles,
   filesController.downloadImage
 );
-router.delete("/delete/:id", authMiddleware, filesController.deleteImage);
+router.delete("/delete/:href", authMiddleware, filesController.deleteImage);
 
 module.exports = router;

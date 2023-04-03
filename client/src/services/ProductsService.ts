@@ -2,30 +2,30 @@ import { apiSlice } from "../store/indexService";
 
 export const productsService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAll: builder.query<any, void>({
+    getProducts: builder.query<any, void>({
       query: () => ({
         url: "/api/products/",
       }),
     }),
-    getFromId: builder.query({
+    getProduct: builder.query({
       query: (id) => ({
         url: `/api/products/${id}`,
       }),
     }),
-    create: builder.mutation({
+    createProduct: builder.mutation({
       query: (credentials) => ({
         url: "/api/products/create",
         method: "POST",
         body: { ...credentials },
       }),
     }),
-    delete: builder.mutation({
+    deleteProduct: builder.mutation({
       query: (id) => ({
         url: `/api/products/refresh/${id}`,
         method: "DELETE",
       }),
     }),
-    patch: builder.mutation({
+    patchProduct: builder.mutation({
       query: ({ id, credentials }) => ({
         url: `/api/products/users/${id}`,
         method: "PATCH",
@@ -36,9 +36,9 @@ export const productsService = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetAllQuery,
-  useGetFromIdQuery,
-  useCreateMutation,
-  useDeleteMutation,
-  usePatchMutation,
+  useGetProductsQuery,
+  useGetProductQuery,
+  useCreateProductMutation,
+  useDeleteProductMutation,
+  usePatchProductMutation,
 } = productsService;

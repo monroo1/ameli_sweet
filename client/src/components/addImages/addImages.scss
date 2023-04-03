@@ -1,0 +1,30 @@
+.add-images {
+  box-sizing: border-box;
+  padding: 12px 0;
+}
+
+.image-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+
+  &--item {
+    position: relative;
+    max-width: 250px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 350px;
+
+    & > img {
+      object-fit: cover;
+    }
+
+    &--btn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

@@ -9,7 +9,13 @@ export const fileService = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    removeImage: builder.mutation({
+      query: (href) => ({
+        url: `/api/files/delete/${href}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useDownloadMutation } = fileService;
+export const { useDownloadMutation, useRemoveImageMutation } = fileService;
