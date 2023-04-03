@@ -11,6 +11,7 @@ export const API_URL = "http://localhost:5000";
 const baseQuery = fetchBaseQuery({
   baseUrl: API_URL,
   credentials: "include",
+
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("token");
     if (token) {

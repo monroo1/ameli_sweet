@@ -14,7 +14,7 @@ class CategoryService {
   }
 
   async getCategories() {
-    const categories = await CategoryModel.find();
+    const categories = await CategoryModel.find().select("-__v -_id");
     return categories;
   }
 

@@ -11,7 +11,8 @@ const Header = () => {
     <div className="header">
       <div className="header-content">
         <div className="header-content__left">
-          <Link to="/create">
+          {/* create */}
+          <Link to="/">
             <img src={logo} />
           </Link>
 

@@ -1,0 +1,15 @@
+.filling {
+  display: flex;
+  flex-direction: column;
+
+  &-item {
+    &--images {
+      &-el {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+    }
+  }
+}
