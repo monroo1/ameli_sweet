@@ -40,25 +40,22 @@ export const fillingSlice = createSlice({
     setFillingImagesDnd: (state, action) => {
       state.images = action.payload;
     },
+    setFilling: (state, action) => {
+      state._id = action.payload._id;
+      state.name = action.payload.name;
+      state.description = action.payload.description;
+      state.images = action.payload.images;
+      state.price = action.payload.price;
+    },
   },
   extraReducers: (builder) => {
-    // builder.addMatcher(
-    //     fillingService.endpoints..matchFulfilled,
-    //     (state) => {
-    //       state = initialState;
-    //     }
-    //   );
     builder.addMatcher(
       fillingService.endpoints.createFilling.matchFulfilled,
-      (state) => {
-        state = initialState;
-      }
+      (state, action) => (state = initialState)
     );
     builder.addMatcher(
       fillingService.endpoints.patchFilling.matchFulfilled,
-      (state) => {
-        state = initialState;
-      }
+      (state, action) => (state = initialState)
     );
   },
 });
@@ -70,6 +67,7 @@ export const {
   setFillingPrice,
   setFillingImagesRemove,
   setFillingImagesDnd,
+  setFilling,
 } = fillingSlice.actions;
 
 export default fillingSlice.reducer;

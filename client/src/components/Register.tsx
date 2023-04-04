@@ -4,7 +4,7 @@ import { TextField, Button } from "@mui/material";
 import { useAppDispatch } from "../hooks/redux";
 import { useRegistrationMutation } from "../services/AuthService";
 import { setError, setUser } from "../store/reducers/AuthSlice";
-import { UserRegisterResponse } from "../models/User";
+import { UserAuthResponse } from "../models/User";
 import React from "react";
 
 const Register = () => {
@@ -19,7 +19,7 @@ const Register = () => {
 
   const handleClick = async () => {
     try {
-      const fetchRegistration: UserRegisterResponse = await registration({
+      const fetchRegistration: UserAuthResponse = await registration({
         email,
         name,
         phone,

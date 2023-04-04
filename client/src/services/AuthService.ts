@@ -1,15 +1,20 @@
+import {
+  UserLoginRequest,
+  UserRegisterRequest,
+  UserAuthResponse,
+} from "../models/User";
 import { apiSlice } from "../store/indexService";
 
 export const authService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    login: builder.mutation<UserAuthResponse, UserLoginRequest>({
       query: (credentials) => ({
         url: "/api/auth/login",
         method: "POST",
         body: { ...credentials },
       }),
     }),
-    registration: builder.mutation({
+    registration: builder.mutation<UserAuthResponse, UserRegisterRequest>({
       query: (credentials) => ({
         url: "/api/auth/registration",
         method: "POST",
@@ -22,7 +27,7 @@ export const authService = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
-    refresh: builder.query({
+    refresh: builder.query<UserAuthResponse, any>({
       query: () => ({
         url: "/api/auth/refresh",
       }),

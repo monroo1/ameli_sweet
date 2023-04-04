@@ -3,50 +3,68 @@ import {
   Button,
   FormControlLabel,
   Checkbox,
-  Fab,
+  Autocomplete,
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import { useEffect } from "react";
-import { useDownloadMutation } from "../../../services/FileService";
 import { useCreateProductMutation } from "../../../services/ProductsService";
 import {
   setProductChange,
   setProductImages,
   setProductImagesDelete,
   setProductImagesDnd,
+  setProductCategory,
+  setProductFillings,
 } from "../../../store/reducers/ProductSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { API_URL } from "../../../store/indexService";
-import React from "react";
+import { AddImages } from "../../addImages/AddImages";
+import { useGetFillingsQuery } from "../../../services/FillingService";
+import { useGetCategoriesQuery } from "../../../services/CategoryService";
+import { Filling } from "../../../store/reducers/FillingSlice";
 
 import "./createProduct.scss";
-import { AddImages } from "../../addImages/AddImages";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
-  const product = useAppSelector((state) => state.productReducer);
+  const {
+    name,
+    price,
+    promoPrice,
+    description,
+    isStock,
+    count,
+    images,
+    category,
+    fillings,
+  } = useAppSelector((state) => state.productReducer);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [create, { isLoading: createLoading }] = useCreateProductMutation();
+  const { data: fillingsData } = useGetFillingsQuery();
+  const { data: categoiesData } = useGetCategoriesQuery();
 
   const fetchCreateProduct = async () => {
     const res = await create({
-      name: product.name,
-      price: product.price,
-      promoPrice: product.promoPrice,
-      description: product.description,
-      isStock: product.isStock,
-      quantityInStock: product.count,
-      images: product.images,
+      name: name,
+      price: price,
+      promoPrice: promoPrice,
+      description: description,
+      isStock: isStock,
+      quantityInStock: count,
+      images: images,
+      category: category,
+      fillings: fillings,
     }).unwrap();
+    return navigate(`/product/${res._id}`);
   };
 
   return (
     <div className="create">
       <div className="create-form">
         <TextField
-          label="Название"
+          label="Название товара"
           variant="outlined"
-          value={product.name}
+          value={name}
           onChange={(e) =>
             dispatch(setProductChange({ value: e.target.value, key: "name" }))
           }
@@ -55,57 +73,93 @@ const CreateProduct = () => {
           label="Цена"
           variant="outlined"
           type="number"
-          value={product.price}
+          value={price}
           onChange={(e) => {
-            dispatch(
-              setProductChange({ value: +e.target.value, key: "price" })
-            );
+            dispatch(setProductChange({ value: e.target.value, key: "price" }));
           }}
         />
         <TextField
           label="Акционная цена"
           variant="outlined"
           type="number"
-          value={product.promoPrice}
+          value={promoPrice}
           onChange={(e) => {
             dispatch(
-              setProductChange({ value: +e.target.value, key: "promoPrice" })
+              setProductChange({ value: e.target.value, key: "promoPrice" })
             );
           }}
         />
         <TextField
           label="Описание"
           variant="outlined"
-          value={product.description}
+          value={description}
           onChange={(e) =>
             dispatch(
               setProductChange({ value: e.target.value, key: "description" })
             )
           }
         />
+        {!!categoiesData && (
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={categoiesData}
+            getOptionLabel={(option: Filling) => option.name}
+            onChange={(_: any, newValue: any | null) => {
+              if (!newValue) {
+                dispatch(setProductCategory(""));
+              } else {
+                dispatch(setProductCategory(newValue._id));
+              }
+            }}
+            renderInput={(params) => (
+              <TextField {...params} label="Выберите категорию" />
+            )}
+          />
+        )}
+
+        {!!fillingsData && (
+          <Autocomplete
+            multiple
+            id="tags-outlined"
+            options={fillingsData}
+            getOptionLabel={(option: Filling) => option.name}
+            onChange={(event: any, newValue: any | null) => {
+              const arr = newValue.map((el: Filling) => el._id);
+              dispatch(setProductFillings(arr));
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="Выберите доступные начинки"
+                placeholder="Наименование"
+              />
+            )}
+          />
+        )}
+
         <FormControlLabel
           control={
             <Checkbox
-              value={product.isStock}
+              value={isStock}
               onChange={(e) =>
-                dispatch(
-                  setProductChange({ value: !product.isStock, key: "isStock" })
-                )
+                dispatch(setProductChange({ value: !isStock, key: "isStock" }))
               }
             />
           }
           label="Есть в наличии?"
         />
 
-        {product.isStock && (
+        {isStock && (
           <TextField
             label="Кол-во в наличии"
             variant="outlined"
             type="number"
-            value={product.count}
+            value={count}
             onChange={(e) => {
               dispatch(
-                setProductChange({ value: +e.target.value, key: "count" })
+                setProductChange({ value: e.target.value, key: "count" })
               );
             }}
           />
@@ -119,7 +173,7 @@ const CreateProduct = () => {
         addImage={setProductImages}
         removeImage={setProductImagesDelete}
         moveImage={setProductImagesDnd}
-        data={product.images}
+        data={images}
       />
     </div>
   );
