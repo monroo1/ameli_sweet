@@ -7,7 +7,7 @@ export interface IUser {
   role: string;
 }
 
-export interface UserRegisterResponse {
+export interface UserAuthResponse {
   accessToken: string;
   refreshToken: string;
   user: IUser;
@@ -18,6 +18,7 @@ export interface UserRegisterRequest {
   name: string;
   phone: number;
   password: string;
+  role: string;
 }
 
 export interface UserLoginRequest {

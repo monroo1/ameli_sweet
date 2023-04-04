@@ -11,7 +11,6 @@ class FilesController {
           href: "/uploads/" + el.filename,
         })
       );
-      console.log(arr);
       return res.json(arr);
     } catch (e) {
       next(e);

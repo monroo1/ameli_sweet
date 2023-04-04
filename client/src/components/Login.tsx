@@ -5,7 +5,7 @@ import { TextField, Button } from "@mui/material";
 import { useLoginMutation } from "../services/AuthService";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { setUser, setError } from "../store/reducers/AuthSlice";
-import { UserRegisterResponse } from "../models/User";
+import { UserAuthResponse } from "../models/User";
 import React from "react";
 
 const Login = () => {
@@ -18,7 +18,7 @@ const Login = () => {
 
   const handleClick = async () => {
     try {
-      const fetchLogin: UserRegisterResponse = await login({
+      const fetchLogin: UserAuthResponse = await login({
         email,
         password,
       }).unwrap();

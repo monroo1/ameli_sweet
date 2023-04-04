@@ -7,6 +7,8 @@ export interface IProduct {
   isStock: boolean;
   count: number;
   images: IFile[];
+  category: string;
+  fillings: [];
 }
 
 export interface IFile {

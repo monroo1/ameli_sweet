@@ -1,4 +1,5 @@
 const ProductModel = require("../models/Product");
+const CategoryModel = require("../models/Category");
 const ApiError = require("../exceptions/api-error");
 
 class ProductsService {
@@ -9,6 +10,10 @@ class ProductsService {
         `Товар с таким названием (${body.name}) уже существует `
       );
     }
+    // const category = await CategoryModel.findOne({ name: body.category });
+
+    // const cred = { ...body, category: category._id };
+    // console.log(cred);
     const product = await ProductModel.create(body);
     return product;
   }

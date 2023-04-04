@@ -11,6 +11,8 @@ const initialState: IProduct = {
   isStock: false,
   count: 0,
   images: [],
+  category: "",
+  fillings: [],
 };
 
 export const productSlice = createSlice({
@@ -24,27 +26,27 @@ export const productSlice = createSlice({
     setProductImages: (state, action) => {
       state.images = [...state.images, ...action.payload];
     },
-
     setProductImagesDelete: (state, action) => {
       state.images = state.images.filter((el) => el.href !== action.payload);
     },
-
     setProductImagesDnd: (state, action) => {
       state.images = action.payload;
+    },
+    setProductCategory: (state, action) => {
+      state.category = action.payload;
+    },
+    setProductFillings: (state, action) => {
+      state.fillings = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
       productsService.endpoints.createProduct.matchFulfilled,
-      (state) => {
-        state = initialState;
-      }
+      (state) => (state = initialState)
     );
     builder.addMatcher(
       productsService.endpoints.patchProduct.matchFulfilled,
-      (state) => {
-        state = initialState;
-      }
+      (state) => (state = initialState)
     );
   },
 });
@@ -54,6 +56,8 @@ export const {
   setProductImages,
   setProductImagesDelete,
   setProductImagesDnd,
+  setProductCategory,
+  setProductFillings,
 } = productSlice.actions;
 
 export default productSlice.reducer;
