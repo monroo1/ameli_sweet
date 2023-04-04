@@ -5,7 +5,10 @@ import {
   Checkbox,
   Autocomplete,
 } from "@mui/material";
-import { useCreateProductMutation } from "../../../services/ProductsService";
+import {
+  useCreateProductMutation,
+  usePatchProductMutation,
+} from "../../../services/ProductsService";
 import {
   setProductChange,
   setProductImages,
@@ -25,36 +28,56 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
+    _id,
     name,
     price,
     promoPrice,
     description,
     isStock,
-    count,
+    quantityInStock,
     images,
     category,
     fillings,
   } = useAppSelector((state) => state.productReducer);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [create, { isLoading: createLoading }] = useCreateProductMutation();
+  const [patchProduct] = usePatchProductMutation();
   const { data: fillingsData } = useGetFillingsQuery();
   const { data: categoiesData } = useGetCategoriesQuery();
 
   const fetchCreateProduct = async () => {
-    const res = await create({
-      name: name,
-      price: price,
-      promoPrice: promoPrice,
-      description: description,
-      isStock: isStock,
-      quantityInStock: count,
-      images: images,
-      category: category,
-      fillings: fillings,
-    }).unwrap();
+    let res;
+    if (!!_id) {
+      res = await patchProduct({
+        id: _id,
+        credentials: {
+          name: name,
+          price: price,
+          promoPrice: promoPrice,
+          description: description,
+          isStock: isStock,
+          quantityInStock: quantityInStock,
+          images: images,
+          category: category,
+          fillings: fillings,
+        },
+      }).unwrap();
+    } else {
+      res = await create({
+        name: name,
+        price: price,
+        promoPrice: promoPrice,
+        description: description,
+        isStock: isStock,
+        quantityInStock: quantityInStock,
+        images: images,
+        category: category,
+        fillings: fillings,
+      }).unwrap();
+    }
     return navigate(`/product/${res._id}`);
   };
 
@@ -156,10 +179,13 @@ const CreateProduct = () => {
             label="Кол-во в наличии"
             variant="outlined"
             type="number"
-            value={count}
+            value={quantityInStock}
             onChange={(e) => {
               dispatch(
-                setProductChange({ value: e.target.value, key: "count" })
+                setProductChange({
+                  value: e.target.value,
+                  key: "quantityInStock",
+                })
               );
             }}
           />

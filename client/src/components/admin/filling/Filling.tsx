@@ -21,7 +21,7 @@ import { IFile } from "../../../models/Product";
 import { API_URL } from "../../../store/indexService";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { FreeMode, Navigation } from "swiper";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -131,28 +131,36 @@ export const FillingList = () => {
         data.map((el: Filling, i: number) => (
           <div key={i} className="filling-item">
             <div>
-              <h2 className="filling-item--title">{el.name}</h2>
-              <p className="filling-item--description">{el.description}</p>
-              <span className="filling-item--price">{el.price + " p."}</span>
-
-              <Button
-                variant="contained"
-                onClick={() => handlePatchFilling(el)}
-              >
-                Изменить
-              </Button>
-              <Button
-                variant="outlined"
-                onClick={() => handleDeleteFilling(el._id)}
-              >
-                Удалить
-              </Button>
+              <div>
+                <h2 className="filling-item--title">
+                  Название: <span className="title">{el.name}</span>
+                </h2>
+                <p className="filling-item--description">
+                  Описание: {el.description}
+                </p>
+                <span className="filling-item--price">
+                  <span className="price">Цена: {el.price + " p."}</span>
+                </span>
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={() => handlePatchFilling(el)}
+                >
+                  Изменить
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={() => handleDeleteFilling(el._id)}
+                >
+                  Удалить
+                </Button>
+              </div>
             </div>
             <div className="filling-item--images">
               <Swiper
                 style={
                   {
-                    marginBottom: 20 + "px",
                     "--swiper-navigation-color": "#fff",
                     "--swiper-pagination-color": "#fff",
                     "--swiper-navigation-size": 33 + "px",

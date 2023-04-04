@@ -15,6 +15,7 @@ import {
   CategoryList,
 } from "./components/admin/category/Category";
 import { FillingCreate, FillingList } from "./components/admin/filling/Filling";
+import { ProductList } from "./components/admin/product/ProductList";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
         element: <AdminPage />,
         children: [
           { path: "product/create", element: <CreateProduct /> },
+          { path: "product/list", element: <ProductList /> },
           { path: "category/create", element: <CategoryCreate /> },
           { path: "category/list", element: <CategoryList /> },
           { path: "filling/create", element: <FillingCreate /> },

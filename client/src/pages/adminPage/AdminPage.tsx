@@ -29,6 +29,7 @@ import {
   FillingCreate,
   FillingList,
 } from "../../components/admin/filling/Filling";
+import { ProductList } from "../../components/admin/product/ProductList";
 
 const AdminPage = () => {
   const [category, setCategory] = React.useState(false);
@@ -70,12 +71,14 @@ const AdminPage = () => {
                 <ListItemText primary="Создать" />
               </ListItemButton>
             </Link>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <FormatListNumbered />
-              </ListItemIcon>
-              <ListItemText primary="Список" />
-            </ListItemButton>
+            <Link to="product/list">
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <FormatListNumbered />
+                </ListItemIcon>
+                <ListItemText primary="Список" />
+              </ListItemButton>
+            </Link>
           </List>
         </Collapse>
         <ListItemButton
@@ -154,6 +157,7 @@ const AdminPage = () => {
       <div className="admin-content">
         <Routes>
           <Route path="product/create" element={<CreateProduct />} />
+          <Route path="product/list" element={<ProductList />} />
           <Route path="category/create" element={<CategoryCreate />} />
           <Route path="category/list" element={<CategoryList />} />
           <Route path="filling/create" element={<FillingCreate />} />
