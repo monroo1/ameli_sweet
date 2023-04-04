@@ -5,7 +5,7 @@ export interface IProduct {
   promoPrice: number;
   description: string;
   isStock: boolean;
-  count: number;
+  quantityInStock: number;
   images: IFile[];
   category: string;
   fillings: [];

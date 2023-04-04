@@ -9,7 +9,7 @@ const initialState: IProduct = {
   promoPrice: 0,
   description: "",
   isStock: false,
-  count: 0,
+  quantityInStock: 0,
   images: [],
   category: "",
   fillings: [],
@@ -38,6 +38,18 @@ export const productSlice = createSlice({
     setProductFillings: (state, action) => {
       state.fillings = action.payload;
     },
+    setProduct: (state, action) => {
+      state._id = action.payload._id;
+      state.name = action.payload.name;
+      state.price = action.payload.price;
+      state.promoPrice = action.payload.promoPrice;
+      state.description = action.payload.description;
+      state.isStock = action.payload.isStock;
+      state.quantityInStock = action.payload.quantityInStock;
+      state.images = action.payload.images;
+      state.category = action.payload.category;
+      state.fillings = action.payload.fillings;
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -58,6 +70,7 @@ export const {
   setProductImagesDnd,
   setProductCategory,
   setProductFillings,
+  setProduct,
 } = productSlice.actions;
 
 export default productSlice.reducer;
