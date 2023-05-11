@@ -1,3 +1,4 @@
+import { IProduct } from "../models/Product";
 import { apiSlice } from "../store/indexService";
 
 export const productsService = apiSlice
@@ -12,7 +13,7 @@ export const productsService = apiSlice
         }),
         providesTags: ["Products"],
       }),
-      getProduct: builder.query({
+      getProduct: builder.query<IProduct, any>({
         query: (id) => ({
           url: `/api/products/${id}`,
         }),

@@ -3,7 +3,7 @@ const cartService = require("../service/basket-service");
 class CartController {
   async getCart(req, res, next) {
     try {
-      const result = await cartService.getCart(req.query.userId);
+      const result = await cartService.getCart(req.header("authorization"));
       return res.json(result);
     } catch (e) {
       next(e);
@@ -12,7 +12,10 @@ class CartController {
 
   async addItem(req, res, next) {
     try {
-      const result = await cartService.addItemCart(req.query.userId, req.body);
+      const result = await cartService.addItemCart(
+        req.header("authorization"),
+        req.body
+      );
       return res.json(result);
     } catch (e) {
       next(e);
@@ -22,7 +25,7 @@ class CartController {
   async patchItem(req, res, next) {
     try {
       const result = await cartService.patchBasketItem(
-        req.query.userId,
+        req.header("authorization"),
         req.body
       );
       return res.json(result);

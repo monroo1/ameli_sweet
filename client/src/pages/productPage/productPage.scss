@@ -65,6 +65,26 @@
 
     &--info {
       width: 100%;
+
+      &-price {
+        font-weight: 700;
+        font-size: 24px;
+        color: #1e212c;
+      }
+
+      &-price-promo {
+        font-weight: 700;
+        font-size: 24px;
+        color: #ff4242;
+
+        & > span {
+          font-weight: 400;
+          font-size: 18px;
+          color: grey;
+          text-decoration: line-through;
+          margin-left: 12px;
+        }
+      }
     }
   }
 }

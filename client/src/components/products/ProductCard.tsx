@@ -20,7 +20,7 @@ const ProductCard = (item: IProduct) => {
             {item.promoPrice > 0 ? (
               <div>
                 <p>{item.price} ₽</p>
-                <span>{item.promoPrice} ₽</span>
+                <span className="card-info--price-promo">{item.promoPrice} ₽</span>
               </div>
             ) : (
               <span>{item.price} ₽</span>

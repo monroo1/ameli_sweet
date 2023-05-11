@@ -13,6 +13,6 @@ router.use("/products", productsRouter);
 router.use("/files", filesRouter);
 router.use("/category", categoryRouter);
 router.use("/filling", fillingRouter);
-router.use("/cart", basketRouter);
+router.use("/basket", basketRouter);
 
 module.exports = router;

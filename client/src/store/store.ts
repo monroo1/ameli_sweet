@@ -8,6 +8,7 @@ import authReducer from "./reducers/AuthSlice";
 import productReducer from "./reducers/ProductSlice";
 import categoryReducer from "./reducers/CategorySlice";
 import fillingReducer from "./reducers/FillingSlice";
+import basketReducer from "./reducers/BasketSlice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   productReducer,
   categoryReducer,
   fillingReducer,
+  basketReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 

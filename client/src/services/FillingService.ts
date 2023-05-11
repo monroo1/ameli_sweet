@@ -1,4 +1,5 @@
 import { apiSlice } from "../store/indexService";
+import { Filling } from "../store/reducers/FillingSlice";
 
 export const fillingService = apiSlice
   .enhanceEndpoints({
@@ -6,7 +7,7 @@ export const fillingService = apiSlice
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getFillings: builder.query<any, void>({
+      getFillings: builder.query<Filling[], void>({
         query: () => ({
           url: "/api/filling/",
         }),

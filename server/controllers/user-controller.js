@@ -4,7 +4,7 @@ const ApiError = require("../exceptions/api-error");
 
 class UserController {
   async registration(req, res, next) {
-    console.log(req.body);
+    // console.log(req.body);
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {

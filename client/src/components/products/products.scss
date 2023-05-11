@@ -64,6 +64,10 @@
       justify-content: space-between;
       align-items: center;
 
+      &-promo {
+        color: #ff4242;
+      }
+
       & span {
         font-weight: 700;
         font-size: 24px;
@@ -91,6 +95,10 @@
     }
 
     & .card-info--hover {
+      color: #ffd8da;
+    }
+
+    & .card-info--price-promo {
       color: #ffd8da;
     }
 
