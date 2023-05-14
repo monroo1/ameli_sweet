@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { setUser, setLogout } from "./reducers/AuthSlice";
 
-export const API_URL = "http://localhost:5000";
+export const API_URL = "https://ameli-cake.ru";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: API_URL,
