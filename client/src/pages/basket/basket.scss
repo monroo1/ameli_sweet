@@ -1,3 +1,10 @@
+.basket-table--content--item > .name > div:first-child {
+  max-width: 140px;
+
+  & > img {
+    max-height: 140px;
+  }
+}
 .basket {
   &-header {
     min-height: 24.84375vw;
