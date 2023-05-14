@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://ameli-sweet.vercel.app",
   })
 );
 app.use("/uploads", express.static("./uploads"));
