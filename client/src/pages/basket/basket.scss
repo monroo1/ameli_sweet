@@ -1,8 +1,11 @@
 .basket-table--content--item > .name > div:first-child {
   max-width: 140px;
+  width: 100%;
 
   & > img {
     max-height: 140px;
+    width: 100%;
+    object-fit: cover;
   }
 }
 .basket {
