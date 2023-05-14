@@ -1,0 +1,40 @@
+.admin {
+  border-bottom: 1px solid #e1e1e1;
+
+  //   &-nav {
+
+  //   }
+  &-content {
+    width: 100%;
+  }
+}
+
+a {
+  color: black;
+}
+
+.admin-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 0;
+}
+
+@media screen and (max-width: 990px) {
+  .admin-wrapper {
+    flex-direction: column;
+    padding: 40px 24px;
+    align-items: center;
+    gap: 24px;
+  }
+  .admin-content > div {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .category-list {
+    max-width: 100% !important;
+  }
+  .category-create {
+    max-width: 100% !important;
+  }
+}

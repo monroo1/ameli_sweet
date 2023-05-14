@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { basketService } from "../../services/BasketService";
 import { IProduct } from "../../models/Product";
-import { Filling } from "./FillingSlice";
 
 export interface IBasketItem {
-  _id: string;
-  product: string | IProduct;
+  _id?: string;
+  product: IProduct | string;
   filling: string;
   count: number;
 }
@@ -19,7 +18,7 @@ const initialState: IBasketItem = {
   _id: "",
   product: "",
   filling: "",
-  count: 0,
+  count: 1,
 };
 
 export const basketSlice = createSlice({
@@ -37,14 +36,14 @@ export const basketSlice = createSlice({
     builder.addMatcher(
       basketService.endpoints.addItemBasket.matchFulfilled,
       (state) => {
-        state.count = 0;
+        state.count = 1;
         state.filling = "";
       }
     );
     builder.addMatcher(
       basketService.endpoints.patchItemBasket.matchFulfilled,
       (state) => {
-        state.count = 0;
+        state.count = 1;
         state.filling = "";
       }
     );

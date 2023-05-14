@@ -1,0 +1,88 @@
+.maininfo {
+  background-image: url("../../../../public/bg-img-1.jpg");
+  padding-top: 100px;
+  padding-bottom: 60px;
+  min-height: 33.59375vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  &-content {
+    & > h1 {
+      color: #eba793;
+      font-family: "Marck Script", cursive;
+      font-size: 120px;
+      margin-bottom: 30px;
+    }
+
+    & > .sub-title {
+      color: #151515;
+      font-size: 36px;
+      font-weight: 700;
+      padding-left: 85px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 2px;
+        background-color: #151515;
+      }
+    }
+
+    & > .description {
+      color: rgb(119, 119, 119);
+      margin-bottom: 30px;
+      font-size: 24px;
+      max-width: 40%;
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .maininfo {
+    padding-top: 80px;
+
+    &-content {
+      & > h1 {
+        font-size: 100px;
+      }
+      & > .sub-title {
+        font-size: 28px;
+      }
+      & > .description {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .maininfo {
+    padding-top: 60px;
+
+    &-content {
+      & > h1 {
+        font-size: 85px;
+      }
+      & > .sub-title {
+        font-size: 22px;
+      }
+      & > .description {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .maininfo {
+    padding-top: 40px;
+  }
+}

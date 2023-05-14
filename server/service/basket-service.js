@@ -10,6 +10,9 @@ class CartService {
   async getCart(token) {
     const user = tokenService.validateAccessToken(token.substr(7));
     const cart = await BasketModel.findOne({ user: user.id });
+    if (!cart) {
+      return [];
+    }
     let productsArr = [];
     for await (const item of cart.basketItems) {
       const basketPosition = await BasketItemModel.findById(item).select(
@@ -21,8 +24,6 @@ class CartService {
       const product = await ProductModel.findById(
         basketPosition.product
       ).select("-__v");
-      // console.log(filling);
-      // console.log(product);
       productsArr.push({
         _id: basketPosition._id,
         product: product,

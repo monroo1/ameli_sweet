@@ -1,0 +1,290 @@
+.product {
+  padding: 40px 0;
+  &-tabs {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: start;
+
+    & button {
+      padding: 10px 20px;
+      border-radius: 4px;
+      color: #9a9ca5;
+      border: 1px solid #fff;
+
+      &:hover {
+        border: 1px solid #17696a;
+        color: #17696a !important;
+      }
+    }
+
+    &--active {
+      border: 1px solid #17696a !important;
+      color: #17696a !important;
+    }
+  }
+
+  &-title {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.33333;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    gap: 32px;
+    max-height: 580px;
+
+    &-add {
+      display: flex;
+      gap: 12px;
+
+      & .add-item {
+        background-color: rgb(235, 167, 147);
+        border: none;
+        outline: none;
+        border-radius: 6px;
+        padding: 0 28px;
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border: 1px solid #eba793;
+        transition: all 0.2s ease-in-out;
+        letter-spacing: 0.15em;
+        &:hover {
+          background-color: #eba89356;
+          scale: 1.03;
+        }
+      }
+    }
+
+    &--count {
+      display: flex;
+      gap: 5px;
+
+      & > input {
+        -moz-appearance: textfield;
+        font-family: "Roboto", sans-serif;
+        font-size: 24px;
+        border-radius: 6px;
+        color: #151515;
+        width: 60px;
+        height: 60px;
+        border: none;
+        text-align: center;
+        outline: 0;
+        background-color: #ebebeb;
+
+        &::selection {
+          background: rgb(235, 167, 147);
+          color: #ffffff;
+        }
+      }
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & > button {
+          border: none;
+          outline: none;
+          width: 27px;
+          height: 27px;
+          font-size: 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.25s ease-in-out;
+
+          &:hover {
+            color: rgb(235, 167, 147);
+          }
+        }
+      }
+    }
+
+    &--category {
+      text-align: left;
+      color: #151515;
+      font-size: 16px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+
+      & > span {
+        font-size: 16px;
+        color: #777777;
+      }
+    }
+
+    &--galary {
+      flex-basis: 50%;
+      max-width: 50%;
+      display: flex;
+      gap: 12px;
+
+      & > div:first-child {
+        max-width: 80%;
+      }
+
+      &--big {
+        width: 100%;
+        height: 600px;
+        border-radius: 4px;
+        overflow: hidden;
+        max-height: 100%;
+
+        & > img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &--small {
+        max-width: 104px;
+        max-height: 104px;
+        opacity: 0.6;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+
+        & > img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &--info {
+      flex-basis: 50%;
+      max-width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &-price {
+        font-weight: 700;
+        font-size: 24px;
+        color: #1e212c;
+      }
+
+      &-price-promo {
+        font-weight: 700;
+        font-size: 24px;
+        color: #ff4242;
+        font-family: "Roboto", sans-serif;
+
+        & > span {
+          font-weight: 400;
+          font-size: 18px;
+          color: grey;
+          text-decoration: line-through;
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+}
+
+.product-content--info-desc {
+  text-align: left;
+  color: #151515;
+  font-size: 16px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+.image {
+  max-width: 300px;
+}
+
+.mySwiper .swiper-slide-thumb-active .product-content--galary--small {
+  opacity: 1;
+}
+
+.swiper-thumbs .swiper-slide {
+  width: auto !important;
+  height: 114px !important;
+}
+
+@media screen and (max-width: 1280px) {
+  .product-content {
+    max-height: 450px;
+    margin-bottom: 60px;
+  }
+  .product-title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .product-content {
+    max-height: 400px;
+    margin-bottom: 120px;
+  }
+  .product-title {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .product {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .product-content {
+    flex-direction: column;
+    max-height: 100%;
+    margin-bottom: 0;
+
+    & > div {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+  .product-content--galary {
+    max-height: 440px;
+  }
+  .product-title {
+    font-size: 24px;
+  }
+  .product-content--info-price-promo {
+    font-size: 18px;
+  }
+  .product-content--info-desc {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 456px) {
+  .product-content--galary {
+    max-height: 360px;
+  }
+
+  .product-content--galary > div:first-child {
+    max-width: 74%;
+  }
+  .swiper-button-prev {
+    display: none;
+  }
+  .swiper-button-next {
+    display: none;
+  }
+}

@@ -1,0 +1,131 @@
+.category {
+  padding: 120px 0;
+
+  & > h2 {
+    text-align: center;
+    font-size: 55px;
+    color: rgb(21, 21, 21);
+    margin-bottom: 50px;
+  }
+
+  &-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+
+.category-card {
+  max-width: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.25s ease-in-out;
+  gap: 16px;
+
+  & > h3 {
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+  }
+
+  &--btn {
+    margin-bottom: 22px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-bottom-color: rgb(163, 163, 163);
+    font-weight: 500;
+    font-size: 16px;
+    padding-bottom: 8px;
+    outline: none;
+    color: rgb(163, 163, 163);
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: #eba793 !important;
+    }
+  }
+
+  & > div {
+    border: 1px solid #e1e1e1;
+    padding: 15px;
+    width: 100%;
+    transition: all 0.25s ease-in-out;
+
+    & > div {
+      position: relative;
+      height: 300px;
+      width: 100%;
+
+      & > img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+
+    & .category-card--btn {
+      border-color: #eba793;
+      color: rgb(21, 21, 21);
+      padding: 8px 14px;
+    }
+
+    & .category-card--image {
+      padding: 0;
+      border-color: transparent;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .category-cards {
+    flex-wrap: wrap;
+  }
+  .category {
+    padding: 90px 0;
+
+    & > h2 {
+      font-size: 46px;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .category-cards {
+    justify-content: center;
+  }
+  .category {
+    padding: 60px 0;
+
+    & > h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+  }
+  .category-card > h3 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .category {
+    padding: 40px 0;
+
+    & > h2 {
+      font-size: 30px;
+    }
+  }
+  .category-card > h3 {
+    font-size: 14px;
+  }
+}

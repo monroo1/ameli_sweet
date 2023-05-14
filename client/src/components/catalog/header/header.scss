@@ -1,0 +1,36 @@
+.catalog-header {
+  min-height: 24.84375vw;
+  background-image: url("../../../../public/catalog-bg.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+
+  & > h2 {
+    padding: 100px 0;
+    text-shadow: 3px 9px 16px rgba(0, 0, 0, 0.18);
+    color: #ffffff;
+    font-size: 55px;
+    line-height: 1.18182;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .catalog-header > h2 {
+    font-size: 44px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .catalog-header > h2 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .catalog-header > h2 {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,32 @@
+.configurated {
+    flex: 0 0 22%;
+    max-width: 22%;
+
+    & h4 {
+        padding-bottom: 20px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #e1e1e1;
+        letter-spacing: .075em;
+        font-size: 16px;
+        line-height: 1.75;
+        margin-bottom: 20px;
+    }
+
+    &-price {
+        margin-bottom: 40px;
+
+        & > span {
+            margin-bottom: 20px;
+        }
+        &--group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: space-between;
+
+            & > div > button {
+                width: 100%;
+            }
+        }
+    }
+}

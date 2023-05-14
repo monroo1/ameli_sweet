@@ -1,0 +1,124 @@
+.footer {
+  &-menu {
+    padding: 100px 0;
+    display: flex;
+    justify-content: space-between;
+
+    & > div {
+      width: 100%;
+    }
+  }
+
+  & h4 {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 1.66667;
+    margin-bottom: 25px;
+  }
+
+  & li {
+    font-size: 16px;
+    letter-spacing: 0.75px;
+    color: rgb(21, 21, 21);
+    transition: all 0.25s ease;
+    margin-bottom: 7px;
+    text-indent: -34px;
+    padding-left: 34px;
+    text-align: left;
+    cursor: pointer;
+
+    &::before {
+      width: 17px;
+      margin-right: 17px;
+      display: inline-block;
+      vertical-align: middle;
+      content: "";
+      height: 2px;
+      background: #d7d7d7;
+      transition: inherit;
+    }
+
+    &:hover {
+      color: #f79f85;
+
+      &::before {
+        width: 34px;
+        background-color: #eba793;
+      }
+    }
+  }
+
+  &-copyright {
+    padding: 35px 0;
+    border-top: 1px solid #e1e1e1;
+    text-align: center;
+  }
+}
+
+.footer-icon {
+  fill: rgb(21, 21, 21);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    fill: #eba793;
+  }
+}
+
+.footer-menu--addres-social {
+  margin-top: 16px;
+  display: flex;
+  gap: 24px;
+}
+
+@media screen and (max-width: 1280px) {
+  .footer-menu {
+    padding: 90px 0;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .footer-menu {
+    padding: 60px 0;
+  }
+  .footer h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .footer li {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .footer h4 {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .footer li {
+    font-size: 14px;
+  }
+  .footer-menu {
+    padding: 30px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    & > div {
+      margin-left: 50%;
+    }
+  }
+  .footer-copyright {
+    padding: 25px 0;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .footer-menu {
+    padding: 30px 24px;
+    & > div {
+      margin-left: 0;
+    }
+  }
+}

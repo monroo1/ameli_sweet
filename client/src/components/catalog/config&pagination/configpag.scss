@@ -1,0 +1,24 @@
+.catalog-content {
+  padding: 120px 0;
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 990px) {
+  .catalog-content {
+    flex-direction: column;
+    padding: 60px 24px;
+    & > .configurated {
+      max-width: 100%;
+      & .configurated-price--group {
+        flex-direction: row-reverse;
+      }
+    }
+
+    & .pagination-products {
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+}

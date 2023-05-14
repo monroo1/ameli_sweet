@@ -4,18 +4,22 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/store";
 import CreateProduct from "./components/admin/product/CreateProduct";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import ProductPage from "./pages/productPage/ProductPage";
-import PersonalPage from "./pages/personalPage/PersonalPage";
+import ProductPage from "./pages/product/ProductPage";
+import PersonalPage from "./pages/profile/profile";
 import { PersistGate } from "redux-persist/integration/react";
-import AdminPage from "./pages/adminPage/AdminPage";
+import AdminPage from "./pages/admin/AdminPage";
 import {
   CategoryCreate,
   CategoryList,
 } from "./components/admin/category/Category";
 import { FillingCreate, FillingList } from "./components/admin/filling/Filling";
 import { ProductList } from "./components/admin/product/ProductList";
+import Catalog from "./pages/catalog/catalog";
+import SigninPage from "./pages/signin/Signin";
+import SignupPage from "./pages/signup/Signup";
+import ContactsPage from "./pages/contacts/Contacts";
+import basket from "./pages/basket/basket";
+import Basket from "./pages/basket/basket";
 
 const router = createBrowserRouter([
   {
@@ -23,10 +27,13 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "create", element: <CreateProduct /> },
-      { path: "login", element: <Login /> },
-      { path: "registration", element: <Register /> },
+      { path: "signin", element: <SigninPage /> },
+      { path: "signup", element: <SignupPage /> },
       { path: "product/:productId", element: <ProductPage /> },
-      { path: "lk", element: <PersonalPage /> },
+      { path: "profile", element: <PersonalPage /> },
+      { path: "catalog", element: <Catalog /> },
+      { path: "contacts", element: <ContactsPage /> },
+      { path: "basket", element: <Basket /> },
       {
         path: "admin",
         element: <AdminPage />,

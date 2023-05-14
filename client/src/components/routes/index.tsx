@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 
-export const PrivateRoute: FC<any> = ({ to = "/login", children }) => {
+export const PrivateRoute: FC<any> = ({ to = "/signin", children }) => {
   const { isAuth } = useAppSelector((state) => state.authReducer);
   return !!isAuth ? children : <Navigate to={to} replace />;
 };

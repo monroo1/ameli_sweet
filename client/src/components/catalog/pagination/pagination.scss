@@ -1,0 +1,25 @@
+.pagination {
+    width: 100%;
+
+    &-products {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 35px;
+    }
+
+    &-results {
+        margin-bottom: 30px;
+        color: #151515;
+        font-size: 15px;
+        line-height: 1.6;
+        font-weight: 400;
+        letter-spacing: .05em;
+    }
+
+    &-control {
+        display: flex;
+        justify-content: center;;
+        margin-top: 40px;
+    }
+}

@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Register from "./components/Register";
-import Login from "./components/Login";
 import Header from "./components/header/Header";
 import "./App.css";
-import { useAppDispatch, useAppSelector } from "./hooks/redux";
+import { useAppDispatch } from "./hooks/redux";
 import { useRefreshQuery } from "./services/AuthService";
 import { setUser } from "./store/reducers/AuthSlice";
-import CreateProduct from "./components/admin/product/CreateProduct";
-import MainPage from "./pages/mainPage/MainPage";
-import ProductPage from "./pages/productPage/ProductPage";
-import PersonalPage from "./pages/personalPage/PersonalPage";
+import MainPage from "./pages/main/MainPage";
+import ProductPage from "./pages/product/ProductPage";
+import PersonalPage from "./pages/profile/profile";
 import { AdminRoute, PrivateRoute } from "./components/routes";
-import AdminPage from "./pages/adminPage/AdminPage";
+import AdminPage from "./pages/admin/AdminPage";
+import Footer from "./components/footer/Footer";
+import Catalog from "./pages/catalog/catalog";
+import SignupPage from "./pages/signup/Signup";
+import SigninPage from "./pages/signin/Signin";
+import ContactsPage from "./pages/contacts/Contacts";
+import Basket from "./pages/basket/basket";
 
 function App() {
   const dispatch = useAppDispatch();
 
   const [skip, setSkip] = useState(true);
-  const { data, isLoading } = useRefreshQuery({}, { skip });
+  const { data } = useRefreshQuery({}, { skip });
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -39,11 +42,21 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="registration" element={<Register />} />
-          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignupPage />} />
+          <Route path="signin" element={<SigninPage />} />
           <Route path="product/:productId" element={<ProductPage />} />
+          <Route path="catalog" element={<Catalog />} />
+          <Route path="contacts" element={<ContactsPage />} />
           <Route
-            path="lk"
+            path="basket"
+            element={
+              <PrivateRoute>
+                <Basket />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="profile"
             element={
               <PrivateRoute>
                 <PersonalPage />
@@ -60,7 +73,7 @@ function App() {
           />
         </Routes>
       </main>
-      <footer></footer>
+      <Footer />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { IUser } from "../../models/User";
 
 interface State extends IUser {
   isLoading: boolean;
-  error: string;
+  error: any;
   isAuth: boolean;
 }
 
