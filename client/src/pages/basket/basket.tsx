@@ -129,6 +129,7 @@ const Basket = () => {
                     />
                   )
                 }
+               )
               }
             </div>
           </div>
