@@ -133,8 +133,10 @@ const Basket = () => {
             </div>
           </div>
           <div className="basket-order">
+            <div>
             <p>Всего:</p>
             <span>{cost} ₽</span>
+            </div>
             <button>Оформить заказ</button>
           </div>
         </div>
