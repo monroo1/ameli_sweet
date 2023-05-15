@@ -133,6 +133,7 @@
             font-size: 24px;
             cursor: pointer;
             transition: all 0.25s ease-in-out;
+            color: rgb(21, 21, 21);
 
             &:hover {
               color: rgb(235, 167, 147);
@@ -201,6 +202,7 @@
     border: 1px solid #eba793;
     transition: all 0.2s ease-in-out;
     letter-spacing: 0.15em;
+    color: rgb(21, 21, 21);
     &:hover {
       background-color: #eba89356;
       scale: 1.1;
@@ -290,5 +292,8 @@
 @media screen and (max-width: 440px) {
   .basket-table--content--item > .name > div {
     display: none;
+  }
+  .basket-order {
+    flex-direction: column;
   }
 }
