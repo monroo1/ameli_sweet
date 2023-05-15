@@ -100,6 +100,8 @@ const Basket = () => {
 
   const [totalCost, setTotalCost] = useState(0);
 
+let cost = 0;
+
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({
@@ -125,18 +127,26 @@ const Basket = () => {
             </div>
             <div className="basket-table--content">
               {!!data &&
-                data!.map((el: any) => (
+                data!.map((el: any) => {
+                const t =
+                  el.product.promoPrice > 0
+                    ? el.product.promoPrice * el.count
+                    : el.product.price * el.count;
+                cost += t;
+                return (
                   <BasketItem
                     el={el}
                     key={el._id}
                     setTotalCost={setTotalCost}
                   />
-                ))}
+                
+              )}
+              }
             </div>
           </div>
           <div className="basket-order">
             <p>Всего:</p>
-            <span>{totalCost} ₽</span>
+            <span>{cost} ₽</span>
             <button>Оформить заказ</button>
           </div>
         </div>
