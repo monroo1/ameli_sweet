@@ -116,7 +116,7 @@ const Basket = () => {
               <div className="total">Всего</div>
             </div>
             <div className="basket-table--content">
-              {!!data ?
+              {data.length >= 1 ?
                 (data!.map((el: any) => {
                   cost += el.product.promoPrice > 0
                           ? el.product.promoPrice * el.count
