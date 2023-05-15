@@ -302,5 +302,13 @@
   }
   .basket-order {
     gap: 12px;
+    
+    & > div {
+      flex-direction: column
+    }
+    
+    & span {
+      margin-left: 0;
+    }
   }
 }
