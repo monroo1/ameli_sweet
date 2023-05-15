@@ -229,8 +229,8 @@
     height: 28px !important;
   }
 
-  .basket-table--content--item > .name > div {
-    // max-width: 90px;
+  .basket-table--content--item > .name > div:first-child {
+    max-width: 90px;
 
     & > img {
       max-height: 90px;

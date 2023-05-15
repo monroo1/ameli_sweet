@@ -16,7 +16,9 @@ class MailService {
   }
 
   async sendActivationMail(name, to, link) {
+    console.log("da1");
     try {
+      console.log("da2");
       await this.transporter.sendMail({
         from: process.env.SMPT_USER,
         to,
@@ -31,6 +33,7 @@ class MailService {
         `,
       });
     } catch (e) {
+      console.log("da3");
       throw ApiError.BadRequest(`Ошибка при отправки письма на почту`);
     }
   }
