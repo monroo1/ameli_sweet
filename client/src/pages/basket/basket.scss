@@ -303,6 +303,7 @@
   }
   .basket-order {
     gap: 12px;
+    justify-content: space-between;
     
     & > div {
       flex-direction: column
