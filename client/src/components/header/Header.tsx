@@ -31,7 +31,7 @@ const Header = () => {
           <div>
             <div className="header-humburger">
               <button onClick={toggleMenu}>
-                <RxHamburgerMenu size={28} />
+                <RxHamburgerMenu size={28} color="rgb(21, 21, 21)"/>
               </button>
             </div>
             <div className="header-top--logo">
@@ -104,7 +104,7 @@ const Header = () => {
         <div className={showBurger ? "burger burger-show" : "burger"}>
           <div className="burger-close">
             <button onClick={toggleMenu}>
-              <IoCloseCircleOutline size={24} />
+              <IoCloseCircleOutline size={24} color="rgb(21, 21, 21)"/>
             </button>
           </div>
           <div className="burger-nav">
