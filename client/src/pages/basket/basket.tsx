@@ -9,7 +9,7 @@ import logo from "../../images/bento.jpg";
 import "./basket.scss";
 import { useLocation } from "react-router-dom";
 
-const BasketItem = ({ el, setTotalCost }: any) => {
+const BasketItem = ({ el }: any) => {
   const [value, setValue] = useState(el.count);
 
   const [patchBasketItem, { isLoading }] = usePatchItemBasketMutation();
@@ -34,14 +34,6 @@ const BasketItem = ({ el, setTotalCost }: any) => {
       }
     }
   };
-
-  useEffect(() => {
-    const t =
-      el.product.promoPrice > 0
-        ? el.product.promoPrice * el.count
-        : el.product.price * el.count;
-    setTotalCost((prev: any) => prev + t);
-  }, []);
 
   return (
     <div className="basket-table--content--item" key={el._id}>
@@ -98,9 +90,7 @@ const BasketItem = ({ el, setTotalCost }: any) => {
 const Basket = () => {
   const { data } = useGetBasketQuery();
 
-  const [totalCost, setTotalCost] = useState(0);
-
-let cost = 0;
+  let cost = 0;
 
   const { pathname } = useLocation();
   useEffect(() => {
@@ -128,19 +118,17 @@ let cost = 0;
             <div className="basket-table--content">
               {!!data &&
                 data!.map((el: any) => {
-                const t =
-                  el.product.promoPrice > 0
-                    ? el.product.promoPrice * el.count
-                    : el.product.price * el.count;
-                cost += t;
-                return (
-                  <BasketItem
-                    el={el}
-                    key={el._id}
-                    setTotalCost={setTotalCost}
-                  />
-                
-              )}
+                  cost += el.product.promoPrice > 0
+                          ? el.product.promoPrice * el.count
+                          : el.product.price * el.count;;
+                  return (
+                    <BasketItem
+                      el={el}
+                      key={el._id}
+                      setTotalCost={setTotalCost}
+                    />
+                  )
+                }
               }
             </div>
           </div>
