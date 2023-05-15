@@ -88,7 +88,7 @@ const BasketItem = ({ el }: any) => {
 };
 
 const Basket = () => {
-  const { data } = useGetBasketQuery();
+  const { data, isFetching } = useGetBasketQuery();
 
   let cost = 0;
 
@@ -116,8 +116,8 @@ const Basket = () => {
               <div className="total">Всего</div>
             </div>
             <div className="basket-table--content">
-              {!!data &&
-                data!.map((el: any) => {
+              {!!data ?
+                (data!.map((el: any) => {
                   cost += el.product.promoPrice > 0
                           ? el.product.promoPrice * el.count
                           : el.product.price * el.count;;
@@ -128,7 +128,7 @@ const Basket = () => {
                     />
                   )
                 }
-               )
+              )) : <div>Корзина пуста.</div>
               }
             </div>
           </div>
