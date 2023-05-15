@@ -128,7 +128,7 @@ const Basket = () => {
                     />
                   )
                 }
-              )) : <div>Корзина пуста.</div>
+              )) : <div className="basket-table--content--item">Корзина пуста.</div>
               }
             </div>
           </div>
