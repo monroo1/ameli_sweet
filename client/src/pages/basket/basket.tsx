@@ -125,7 +125,6 @@ const Basket = () => {
                     <BasketItem
                       el={el}
                       key={el._id}
-                      setTotalCost={setTotalCost}
                     />
                   )
                 }
