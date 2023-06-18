@@ -1,11 +1,8 @@
-"use client";
-// import ProductCard from "@/components/product-card/productCard";
-// import { IProduct } from "@/models/Product";
 import Pagination from "@mui/material/Pagination";
+import ProductCard from "../../product/ProductCard";
+import { IProduct } from "../../../utils/interface/product";
 
 import "./pagination.scss";
-import { IProduct } from "../../../models/Product";
-import ProductCard from "../../product/ProductCard";
 
 const CatalogPagination = ({
   products,

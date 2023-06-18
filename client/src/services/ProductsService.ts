@@ -1,5 +1,9 @@
-import { IProduct } from "../models/Product";
 import { apiSlice } from "../store/indexService";
+import {
+  IProduct,
+  ProductCreateRequest,
+  ProductPatchRequest,
+} from "../utils/interface/product";
 
 export const productsService = apiSlice
   .enhanceEndpoints({
@@ -7,19 +11,19 @@ export const productsService = apiSlice
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getProducts: builder.query<any, void>({
+      getProducts: builder.query<IProduct[], void>({
         query: () => ({
           url: "/api/products/",
         }),
         providesTags: ["Products"],
       }),
-      getProduct: builder.query<IProduct, any>({
+      getProduct: builder.query<IProduct, string>({
         query: (id) => ({
           url: `/api/products/${id}`,
         }),
         providesTags: ["Products"],
       }),
-      createProduct: builder.mutation({
+      createProduct: builder.mutation<IProduct, ProductCreateRequest>({
         query: (credentials) => ({
           url: "/api/products/create",
           method: "POST",
@@ -27,14 +31,14 @@ export const productsService = apiSlice
         }),
         invalidatesTags: ["Products"],
       }),
-      deleteProduct: builder.mutation({
+      deleteProduct: builder.mutation<any, string>({
         query: (id) => ({
           url: `/api/products/delete/${id}`,
           method: "DELETE",
         }),
         invalidatesTags: ["Products"],
       }),
-      patchProduct: builder.mutation({
+      patchProduct: builder.mutation<IProduct, ProductPatchRequest>({
         query: ({ id, credentials }) => ({
           url: `/api/products/patch/${id}`,
           method: "PATCH",

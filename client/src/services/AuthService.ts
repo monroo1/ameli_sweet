@@ -2,7 +2,7 @@ import {
   UserLoginRequest,
   UserRegisterRequest,
   UserAuthResponse,
-} from "../models/User";
+} from "../utils/interface/user";
 import { apiSlice } from "../store/indexService";
 
 export const authService = apiSlice.injectEndpoints({

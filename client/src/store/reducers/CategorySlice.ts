@@ -1,12 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { categoryService } from "../../services/CategoryService";
+import { CategoryPatchRequest } from "../../utils/interface/category";
 
-export interface Category {
-  newName: string;
-  name: string;
-}
-
-const initialState: Category = {
+const initialState: CategoryPatchRequest = {
   name: "",
   newName: "",
 };

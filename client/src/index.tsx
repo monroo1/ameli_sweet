@@ -20,6 +20,9 @@ import SignupPage from "./pages/signup/Signup";
 import ContactsPage from "./pages/contacts/Contacts";
 import basket from "./pages/basket/basket";
 import Basket from "./pages/basket/basket";
+import { CreateOrderPage } from "./pages/create-order/CreateOrder";
+import OrderList from "./components/admin/orders/OrderList";
+import OrderPageAdmin from "./components/admin/orders/Order";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,7 @@ const router = createBrowserRouter([
       { path: "catalog", element: <Catalog /> },
       { path: "contacts", element: <ContactsPage /> },
       { path: "basket", element: <Basket /> },
+      { path: "create-order/:id", element: <CreateOrderPage /> },
       {
         path: "admin",
         element: <AdminPage />,
@@ -44,6 +48,8 @@ const router = createBrowserRouter([
           { path: "category/list", element: <CategoryList /> },
           { path: "filling/create", element: <FillingCreate /> },
           { path: "filling/list", element: <FillingList /> },
+          { path: "orders", element: <OrderList /> },
+          { path: "order/:id", element: <OrderPageAdmin /> },
         ],
       },
     ],

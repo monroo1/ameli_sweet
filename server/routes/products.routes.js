@@ -3,6 +3,7 @@ const productsController = require("../controllers/products-contoller");
 const router = new Router();
 const { body } = require("express-validator");
 const authMiddleware = require("../middlewares/auth-middleware");
+const adminMiddleware = require("../middlewares/admin-middleware");
 
 router.get("/", productsController.getProducts);
 
@@ -15,11 +16,22 @@ router.post(
   body("description").isLength({ min: 10 }),
   body("isStock").isBoolean(),
   authMiddleware,
+  adminMiddleware,
   productsController.createProduct
 );
 
-router.delete("/delete/:id", authMiddleware, productsController.deleteProduct);
+router.delete(
+  "/delete/:id",
+  authMiddleware,
+  adminMiddleware,
+  productsController.deleteProduct
+);
 
-router.patch("/patch/:id", authMiddleware, productsController.patchProduct);
+router.patch(
+  "/patch/:id",
+  authMiddleware,
+  adminMiddleware,
+  productsController.patchProduct
+);
 
 module.exports = router;

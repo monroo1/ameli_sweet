@@ -29,7 +29,11 @@ const MainPage = () => {
       <MainInfo />
       <MainCategory />
       <AboutUs />
-      {isLoading ? <div>Загрузка</div> : <MainProducts products={data} />}
+      {!isLoading && data ? (
+        <MainProducts products={data} />
+      ) : (
+        <div>Загрузка</div>
+      )}
       <WhyUs />
     </div>
   );

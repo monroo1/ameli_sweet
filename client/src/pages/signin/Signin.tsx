@@ -3,8 +3,8 @@ import { Link, Navigate, useLocation } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useLoginMutation } from "../../services/AuthService";
-import { UserAuthResponse } from "../../models/User";
 import { setUser, setError } from "../../store/reducers/AuthSlice";
+import { UserAuthResponse } from "../../utils/interface/user";
 
 const SigninPage = () => {
   const dispatch = useAppDispatch();

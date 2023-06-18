@@ -7,7 +7,6 @@ import {
   usePatchFillingMutation,
 } from "../../../services/FillingService";
 import {
-  Filling,
   setFilling,
   setFillingDescription,
   setFillingImages,
@@ -17,7 +16,6 @@ import {
   setFillingPrice,
 } from "../../../store/reducers/FillingSlice";
 import { AddImages } from "../../addImages/AddImages";
-import { IFile } from "../../../models/Product";
 import { API_URL } from "../../../store/indexService";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -30,6 +28,8 @@ import "swiper/css/navigation";
 import "./filling.scss";
 import { useNavigate } from "react-router-dom";
 import { CSSProperties } from "react";
+import { IFilling } from "../../../utils/interface/filling";
+import { IFile } from "../../../utils/interface/file";
 
 export const FillingCreate = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +39,6 @@ export const FillingCreate = () => {
   const [createFiling] = useCreateFillingMutation();
 
   const handleCreate = async () => {
-    //is patchend
     if (!!filling._id) {
       const res = await patchedFilling({
         id: filling._id,
@@ -50,7 +49,6 @@ export const FillingCreate = () => {
           price: filling.price,
         },
       });
-      console.log(res);
     } else {
       const res = await createFiling({
         name: filling.name,
@@ -106,7 +104,7 @@ export const FillingList = () => {
   const [deleteFilling, { isLoading: deleteFillingLoading }] =
     useDeleteFillingMutation();
 
-  const handlePatchFilling = (el: Filling) => {
+  const handlePatchFilling = (el: IFilling) => {
     dispatch(
       setFilling({
         _id: el._id,
@@ -128,7 +126,7 @@ export const FillingList = () => {
   return (
     <div className="filling">
       {!!data &&
-        data.map((el: Filling, i: number) => (
+        data.map((el: IFilling, i: number) => (
           <div key={i} className="filling-item">
             <div>
               <div>

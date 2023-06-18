@@ -1,0 +1,23 @@
+.order-admin {
+  margin-left: 24px;
+  &--content {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+}
+
+.create-order--product--content--bottom-admin {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+  align-items: flex-start !important;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 990px) {
+  .order-admin {
+    margin-left: 0;
+  }
+}

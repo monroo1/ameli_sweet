@@ -1,4 +1,4 @@
-import { IProduct } from "../../../models/Product";
+import { IProduct } from "../../../utils/interface/product";
 import ProductCard from "../../product/ProductCard";
 
 import "./mainProduct.scss";

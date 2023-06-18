@@ -41,7 +41,7 @@ class CategoryService {
       { $set: { name: newName } }
     );
 
-    return { name: newName, status: "ok" };
+    return { _id: candidateName._id, name: newName };
   }
 }
 

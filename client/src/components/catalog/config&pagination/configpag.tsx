@@ -1,9 +1,8 @@
-"use client";
 import { useEffect, useState } from "react";
 import CatalogConfigurated from "../configurated/configurated";
 import CatalogPagination from "../pagination/pagination";
-import { IProduct } from "../../../models/Product";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { IProduct } from "../../../utils/interface/product";
 
 import "./configpag.scss";
 

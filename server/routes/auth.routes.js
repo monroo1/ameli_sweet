@@ -8,7 +8,7 @@ router.post(
   "/registration",
   body("email").isEmail(),
   body("password").isLength({ min: 5, max: 15 }),
-  body("phone").isMobilePhone(),
+  body("phone").isLength({ min: 11 }),
   body("name").isLength({ min: 2, max: 15 }),
   body("role").isLength({ min: 4, max: 5 }),
   userController.registration

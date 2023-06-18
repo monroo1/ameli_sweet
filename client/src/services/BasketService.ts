@@ -1,5 +1,5 @@
 import { apiSlice } from "../store/indexService";
-import { IBasketItem, PatchBasketItem } from "../store/reducers/BasketSlice";
+import { IBasketItem, PatchBasketItem } from "../utils/interface/basket";
 
 export const basketService = apiSlice
   .enhanceEndpoints({

@@ -1,13 +1,4 @@
-"use client";
-import { useState, useEffect } from "react";
-import {
-  Slider,
-  FormLabel,
-  FormControl,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-} from "@mui/material";
+import { Slider, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 
 import "./configurated.scss";
 import Button from "../../UI/button/Button";
@@ -22,9 +13,7 @@ const CatalogConfigurated = ({
   maxmax,
   value,
   setValue,
-  minNum,
   setMinNum,
-  maxNum,
   setMaxNum,
   priceRangeValue,
   setPriceRangeValue,

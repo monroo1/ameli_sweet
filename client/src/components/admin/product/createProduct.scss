@@ -1,14 +1,13 @@
 .create {
   display: flex;
-  //   flex-direction: column;
   width: 100%;
   gap: 12px;
 
   &-form {
     display: flex;
-    // justify-content: ;
     flex-direction: column;
     width: 100%;
+    min-width: 250px;
     max-width: 300px;
     gap: 12px;
   }

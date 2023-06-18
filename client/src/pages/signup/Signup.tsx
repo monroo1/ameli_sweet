@@ -2,9 +2,10 @@ import { FC, useState, useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import { useRegistrationMutation } from "../../services/AuthService";
-import { UserAuthResponse } from "../../models/User";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { setError, setUser } from "../../store/reducers/AuthSlice";
+import { MuiTelInput } from "mui-tel-input";
+import { UserAuthResponse } from "../../utils/interface/user";
 
 import "../signin/auth.scss";
 
@@ -13,7 +14,7 @@ const SignupPage: FC = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState(7);
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
@@ -28,6 +29,10 @@ const SignupPage: FC = () => {
       behavior: "smooth",
     });
   }, [pathname]);
+
+  const handleChangePhone = (newValue: string) => {
+    setPhone(newValue);
+  };
 
   const handleClick = async () => {
     if (password === rePassword && password !== "") {
@@ -76,13 +81,20 @@ const SignupPage: FC = () => {
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
-          <TextField
+          {/* <TextField
             id="reg-phone"
             label="Телефон"
             variant="outlined"
             type="tel"
             value={phone || 7}
             onChange={(event) => setPhone(parseInt(event.target.value))}
+          /> */}
+          <MuiTelInput
+            aria-labelledby="radio-buttons-group-phone"
+            defaultCountry="RU"
+            fullWidth
+            value={phone}
+            onChange={handleChangePhone}
           />
           <TextField
             error={passwordError}

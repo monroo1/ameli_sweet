@@ -1,16 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fillingService } from "../../services/FillingService";
-import { IFile } from "../../models/Product";
+import { IFilling } from "../../utils/interface/filling";
 
-export interface Filling {
-  _id: string;
-  name: string;
-  description: string;
-  images: IFile[];
-  price: number;
-}
-
-const initialState: Filling = {
+const initialState: IFilling = {
   _id: "",
   name: "",
   description: "",

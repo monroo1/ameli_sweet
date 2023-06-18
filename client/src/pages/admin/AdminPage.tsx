@@ -16,6 +16,7 @@ import {
   ControlPoint,
   FormatListNumbered,
   PersonOutline,
+  DeliveryDining,
 } from "@mui/icons-material";
 
 import "./adminPage.scss";
@@ -30,6 +31,8 @@ import {
   FillingList,
 } from "../../components/admin/filling/Filling";
 import { ProductList } from "../../components/admin/product/ProductList";
+import OrderList from "../../components/admin/orders/OrderList";
+import OrderPageAdmin from "../../components/admin/orders/Order";
 
 const AdminPage = () => {
   const [category, setCategory] = React.useState(false);
@@ -148,12 +151,20 @@ const AdminPage = () => {
               </Link>
             </List>
           </Collapse>
-          <ListItemButton>
+          <Link to="orders">
+            <ListItemButton>
+              <ListItemIcon>
+                <DeliveryDining />
+              </ListItemIcon>
+              <ListItemText primary="Заказы" />
+            </ListItemButton>
+          </Link>
+          {/* <ListItemButton>
             <ListItemIcon>
               <PersonOutline />
             </ListItemIcon>
             <ListItemText primary="Пользователи" />
-          </ListItemButton>
+          </ListItemButton> */}
         </List>
         <div className="admin-content">
           <Routes>
@@ -163,6 +174,8 @@ const AdminPage = () => {
             <Route path="category/list" element={<CategoryList />} />
             <Route path="filling/create" element={<FillingCreate />} />
             <Route path="filling/list" element={<FillingList />} />
+            <Route path="orders" element={<OrderList />} />
+            <Route path="order/:id" element={<OrderPageAdmin />} />
           </Routes>
         </div>
       </div>

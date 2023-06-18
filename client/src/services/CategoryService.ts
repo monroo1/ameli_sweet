@@ -1,4 +1,9 @@
 import { apiSlice } from "../store/indexService";
+import {
+  CategoryCreateRequest,
+  CategoryPatchRequest,
+  ICategory,
+} from "../utils/interface/category";
 
 export const categoryService = apiSlice
   .enhanceEndpoints({
@@ -6,28 +11,28 @@ export const categoryService = apiSlice
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getCategories: builder.query<any, void>({
+      getCategories: builder.query<ICategory[], void>({
         query: () => ({
           url: "/api/category/",
         }),
         providesTags: ["Category"],
       }),
-      createCategory: builder.mutation({
-        query: (credentials) => ({
+      createCategory: builder.mutation<ICategory, CategoryCreateRequest>({
+        query: (cred) => ({
           url: "/api/category/create",
           method: "POST",
-          body: { name: credentials },
+          body: { name: cred.name },
         }),
         invalidatesTags: ["Category"],
       }),
-      deleteCategory: builder.mutation({
-        query: (name) => ({
+      deleteCategory: builder.mutation<void, CategoryCreateRequest>({
+        query: ({ name }) => ({
           url: `/api/category/delete/${name}`,
           method: "DELETE",
         }),
         invalidatesTags: ["Category"],
       }),
-      patchCategory: builder.mutation({
+      patchCategory: builder.mutation<ICategory, CategoryPatchRequest>({
         query: ({ name, newName }) => ({
           url: `/api/category/patch/${name}?newName=${newName}`,
           method: "PATCH",

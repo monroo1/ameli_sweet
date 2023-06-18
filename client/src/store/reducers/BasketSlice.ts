@@ -1,18 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { basketService } from "../../services/BasketService";
-import { IProduct } from "../../models/Product";
-
-export interface IBasketItem {
-  _id?: string;
-  product: IProduct | string;
-  filling: string;
-  count: number;
-}
-
-export interface PatchBasketItem {
-  _id: string;
-  count: number;
-}
+import { IBasketItem } from "../../utils/interface/basket";
 
 const initialState: IBasketItem = {
   _id: "",

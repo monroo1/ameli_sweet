@@ -2,7 +2,6 @@ import { useLocation, useParams } from "react-router-dom";
 import { CSSProperties, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetProductQuery } from "../../services/ProductsService";
-import { IFile } from "../../models/Product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import {
@@ -20,7 +19,6 @@ import {
   setCountBasketItem,
   setFillingBasketItem,
 } from "../../store/reducers/BasketSlice";
-import { Filling } from "../../store/reducers/FillingSlice";
 import { API_URL } from "../../store/indexService";
 import ContentLoader from "react-content-loader";
 
@@ -30,6 +28,8 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "./productPage.scss";
 import { useAddItemBasketMutation } from "../../services/BasketService";
+import { IFilling } from "../../utils/interface/filling";
+import { IFile } from "../../utils/interface/file";
 
 const EventsLoader = (props: any) => (
   <div className="wrapper">
@@ -68,7 +68,7 @@ const ProductPage = () => {
   const { isAuth } = useAppSelector((state) => state.authReducer);
 
   const [thumbsSwiper, setThumbsSwiper]: any = useState(null);
-  const [fillingsData, setFillingsData] = useState<Filling[]>([]);
+  const [fillingsData, setFillingsData] = useState<IFilling[]>([]);
   const [category, setCategory] = useState("");
   const [errorFilling, setErrorFilling] = useState(false);
 
@@ -80,8 +80,9 @@ const ProductPage = () => {
     useGetCategoriesQuery();
   const { data: fillings, isFetching: fetchingFillings } =
     useGetFillingsQuery();
-  const { data: product, isFetching: fetchingProduct } =
-    useGetProductQuery(productId);
+  const { data: product, isFetching: fetchingProduct } = useGetProductQuery(
+    productId!
+  );
 
   useEffect(() => {
     if (!product && !fetchingProduct) {
@@ -101,9 +102,9 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (fillings && !fetchingFillings && product && !fetchingProduct) {
-      const arr: Filling[] = [];
-      product.fillings.map((filling) =>
-        fillings.filter((el) => filling === el._id && arr.push(el))
+      const arr: IFilling[] = [];
+      product.fillings.map((filling: IFilling) =>
+        fillings.filter((el: any) => filling === el._id && arr.push(el))
       );
       setFillingsData(arr);
     }

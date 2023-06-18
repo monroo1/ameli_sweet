@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUser } from "../../models/User";
+import { IUser } from "../../utils/interface/user";
 
 interface State extends IUser {
   isLoading: boolean;

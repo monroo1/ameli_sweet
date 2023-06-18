@@ -1,23 +1,17 @@
-// import CatalogConfigpag from "@/components/catalog/config&pagination/configpag";
-// import CatalogHeader from "@/components/catalog/header/header";
-// import { IProduct } from "@/models/Product";
-
 import CatalogConfigpag from "../../components/catalog/config&pagination/configpag";
 import CatalogHeader from "../../components/catalog/header/header";
 import { useGetProductsQuery } from "../../services/ProductsService";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 const Catalog = () => {
-  const { data, isLoading } = useGetProductsQuery();
+  const { data: products, isLoading } = useGetProductsQuery();
 
-  return isLoading ? (
-    <div>Загрузка</div>
-  ) : (
+  return !isLoading && !!products ? (
     <div>
       <CatalogHeader />
-      <CatalogConfigpag products={data} />
+      <CatalogConfigpag products={products} />
     </div>
+  ) : (
+    <div>Загрузка</div>
   );
 };
 

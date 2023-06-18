@@ -4,7 +4,6 @@ const ApiError = require("../exceptions/api-error");
 
 class UserController {
   async registration(req, res, next) {
-    // console.log(req.body);
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -68,7 +67,7 @@ class UserController {
     try {
       const activationLink = req.params.link;
       await userService.activate(activationLink);
-      return res.redirect("http://localhost:3000/");
+      return res.redirect("https://ameli-sweet.vercel.app/");
     } catch (e) {
       next(e);
     }

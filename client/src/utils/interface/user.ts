@@ -16,7 +16,7 @@ export interface UserAuthResponse {
 export interface UserRegisterRequest {
   email: string;
   name: string;
-  phone: number;
+  phone: string;
   password: string;
   role: string;
 }

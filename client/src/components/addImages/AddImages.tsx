@@ -3,7 +3,6 @@ import {
   useDownloadMutation,
   useRemoveImageMutation,
 } from "../../services/FileService";
-import { IFile } from "../../models/Product";
 import { API_URL } from "../../store/indexService";
 import { SvgIcon } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -14,13 +13,7 @@ import { useCallback, useRef } from "react";
 import update from "immutability-helper";
 
 import "./addImages.scss";
-
-interface IAddImages {
-  addImage: Function;
-  removeImage: Function;
-  moveImage: Function;
-  data: IFile[];
-}
+import { IAddImages } from "../../utils/interface/file";
 
 const ItemTypes = {
   CARD: "card",

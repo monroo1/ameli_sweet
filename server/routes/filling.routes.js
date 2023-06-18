@@ -1,6 +1,7 @@
 const Router = require("express");
 const fillingController = require("../controllers/filling-controller");
 const authMiddleware = require("../middlewares/auth-middleware");
+const adminMiddleware = require("../middlewares/admin-middleware");
 
 const router = new Router();
 
@@ -10,19 +11,22 @@ router.get("/:id", fillingController.getFilling);
 
 router.post(
   "/create",
-  //  authMiddleware,
+  authMiddleware,
+  adminMiddleware,
   fillingController.createFilling
 );
 
 router.delete(
   "/delete/:id",
-  //   authMiddleware,
+  authMiddleware,
+  adminMiddleware,
   fillingController.deleteFilling
 );
 
 router.patch(
   "/patch/:id",
-  //  authMiddleware,
+  authMiddleware,
+  adminMiddleware,
   fillingController.patchFilling
 );
 

@@ -21,11 +21,11 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { AddImages } from "../../addImages/AddImages";
 import { useGetFillingsQuery } from "../../../services/FillingService";
 import { useGetCategoriesQuery } from "../../../services/CategoryService";
-import { Filling } from "../../../store/reducers/FillingSlice";
+import { useNavigate } from "react-router-dom";
 
 import "./createProduct.scss";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { IFilling } from "../../../utils/interface/filling";
+import { ICategory } from "../../../utils/interface/category";
 
 const CreateProduct = () => {
   const dispatch = useAppDispatch();
@@ -127,7 +127,7 @@ const CreateProduct = () => {
             disablePortal
             id="combo-box-demo"
             options={categoiesData}
-            getOptionLabel={(option: Filling) => option.name}
+            getOptionLabel={(option: ICategory) => option.name}
             onChange={(_: any, newValue: any | null) => {
               if (!newValue) {
                 dispatch(setProductCategory(""));
@@ -146,9 +146,9 @@ const CreateProduct = () => {
             multiple
             id="tags-outlined"
             options={fillingsData}
-            getOptionLabel={(option: Filling) => option.name}
+            getOptionLabel={(option: IFilling) => option.name}
             onChange={(event: any, newValue: any | null) => {
-              const arr = newValue.map((el: Filling) => el._id);
+              const arr = newValue.map((el: IFilling) => el._id);
               dispatch(setProductFillings(arr));
             }}
             renderInput={(params) => (

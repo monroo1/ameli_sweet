@@ -1,6 +1,6 @@
-import { IProduct } from "../../models/Product";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../store/indexService";
+import { IProduct } from "../../utils/interface/product";
 
 import "./productCard.scss";
 

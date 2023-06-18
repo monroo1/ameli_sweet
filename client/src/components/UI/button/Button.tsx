@@ -1,4 +1,3 @@
-import { FC } from "react";
 import "./button.scss";
 
 const Button = ({ name, size }: { name: string; size?: string }) => {

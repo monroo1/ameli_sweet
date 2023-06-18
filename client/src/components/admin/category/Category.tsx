@@ -12,6 +12,7 @@ import {
 } from "../../../store/reducers/CategorySlice";
 
 import "./category.scss";
+import { ICategory } from "../../../utils/interface/category";
 
 export const CategoryList = () => {
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ export const CategoryList = () => {
   return (
     <div className="category-list">
       {data &&
-        data.map((el: { name: string }, i: number) => (
+        data.map((el: ICategory, i: number) => (
           <div key={i} className="category-list--el">
             <TextField
               value={name === el.name ? newName : el.name}
@@ -54,10 +55,7 @@ export const CategoryList = () => {
                 >
                   Изменить
                 </Button>
-                <Button
-                  variant="outlined"
-                  onClick={() => deleteCategory(el.name)}
-                >
+                <Button variant="outlined" onClick={() => deleteCategory(el)}>
                   Удалить
                 </Button>
               </div>
@@ -73,6 +71,7 @@ export const CategoryCreate = () => {
   const dispatch = useAppDispatch();
   const { name } = useAppSelector((state) => state.categoryReducer);
   const [createCategory] = useCreateCategoryMutation();
+
   return (
     <div className="category-create">
       <TextField
@@ -80,7 +79,7 @@ export const CategoryCreate = () => {
         label="Название категории"
         onChange={(e) => dispatch(setCategoryName(e.target.value))}
       />
-      <Button variant="contained" onClick={() => createCategory(name)}>
+      <Button variant="contained" onClick={() => createCategory({ name })}>
         Создать
       </Button>
     </div>

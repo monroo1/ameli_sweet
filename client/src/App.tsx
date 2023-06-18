@@ -16,6 +16,7 @@ import SignupPage from "./pages/signup/Signup";
 import SigninPage from "./pages/signin/Signin";
 import ContactsPage from "./pages/contacts/Contacts";
 import Basket from "./pages/basket/basket";
+import { CreateOrderPage } from "./pages/create-order/CreateOrder";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -52,6 +53,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Basket />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="create-order/:id"
+            element={
+              <PrivateRoute>
+                <CreateOrderPage />
               </PrivateRoute>
             }
           />

@@ -4,11 +4,8 @@ const FillingModel = require("../models/Filling");
 const ProductModel = require("../models/Product");
 const ApiError = require("../exceptions/api-error");
 
-const tokenService = require("./token-service");
-
 class CartService {
-  async getCart(token) {
-    const user = tokenService.validateAccessToken(token.substr(7));
+  async getCart(user) {
     const cart = await BasketModel.findOne({ user: user.id });
     if (!cart) {
       return [];
@@ -34,8 +31,7 @@ class CartService {
     return productsArr;
   }
 
-  async addItemCart(token, body) {
-    const user = tokenService.validateAccessToken(token.substr(7));
+  async addItemCart(user, body) {
     const basket = await BasketModel.findOne({ user: user.id });
     let productsArr = [];
     let createStatus = true;
@@ -51,7 +47,6 @@ class CartService {
         });
       }
       productsArr.map((el) => {
-        // console.log(el);
         if (
           el.basketPosition.product.toString() === body.product &&
           el.basketPosition.filling.toString() === body.filling
@@ -60,9 +55,7 @@ class CartService {
         }
       });
     }
-
     let updateBasket;
-    // console.log(body);
     if (createStatus) {
       const basketItem = await BasketItemModel.create({
         product: body.product,
@@ -90,8 +83,7 @@ class CartService {
     return { status: "ok" };
   }
 
-  async patchBasketItem(token, body) {
-    const user = tokenService.validateAccessToken(token.substr(7));
+  async patchBasketItem(user, body) {
     const candidateName = await BasketItemModel.findOne({ _id: body._id });
 
     if (!candidateName) {

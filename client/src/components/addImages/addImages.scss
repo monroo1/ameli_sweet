@@ -19,12 +19,17 @@
 
     & > img {
       object-fit: cover;
+      width: 100%;
     }
 
     &--btn {
       position: absolute;
       bottom: 0;
       right: 0;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
     }
   }
 }

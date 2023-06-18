@@ -5,9 +5,6 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { API_URL } from "../../../store/indexService";
-import { IFile, IProduct } from "../../../models/Product";
-
-import "./productList.scss";
 import { CSSProperties } from "react";
 import { Button, Divider } from "@mui/material";
 import { useGetCategoriesQuery } from "../../../services/CategoryService";
@@ -15,6 +12,10 @@ import { useGetFillingsQuery } from "../../../services/FillingService";
 import { useAppDispatch } from "../../../hooks/redux";
 import { setProduct } from "../../../store/reducers/ProductSlice";
 import { useNavigate } from "react-router-dom";
+
+import "./productList.scss";
+import { IFile } from "../../../utils/interface/file";
+import { IProduct } from "../../../utils/interface/product";
 
 export const ProductList = () => {
   const dispatch = useAppDispatch();
@@ -35,9 +36,7 @@ export const ProductList = () => {
     navigate("/admin/product/create");
   };
 
-  return isLoading ? (
-    <div>загрузка...</div>
-  ) : (
+  return !!productsData && !isLoading ? (
     <div className="product-list">
       {productsData.map((product: IProduct, i: number) => (
         <div className="product-list--item" key={i}>
@@ -131,5 +130,7 @@ export const ProductList = () => {
         </div>
       ))}
     </div>
+  ) : (
+    <div>загрузка...</div>
   );
 };

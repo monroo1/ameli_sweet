@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { productsService } from "../../services/ProductsService";
-import { IProduct } from "../../models/Product";
+import { IProduct } from "../../utils/interface/product";
 
 const initialState: IProduct = {
   _id: "",
