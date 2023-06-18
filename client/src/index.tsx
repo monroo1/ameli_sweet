@@ -18,7 +18,6 @@ import Catalog from "./pages/catalog/catalog";
 import SigninPage from "./pages/signin/Signin";
 import SignupPage from "./pages/signup/Signup";
 import ContactsPage from "./pages/contacts/Contacts";
-import basket from "./pages/basket/basket";
 import Basket from "./pages/basket/basket";
 import { CreateOrderPage } from "./pages/create-order/CreateOrder";
 import OrderList from "./components/admin/orders/OrderList";

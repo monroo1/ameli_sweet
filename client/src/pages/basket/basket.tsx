@@ -114,8 +114,8 @@ const BasketItem = ({ item }: any) => {
 };
 
 const Basket = () => {
-  const { data, isFetching } = useGetBasketQuery();
-  const [create, { isLoading }] = useCreateOrderMutation();
+  const { data } = useGetBasketQuery();
+  const [create] = useCreateOrderMutation();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

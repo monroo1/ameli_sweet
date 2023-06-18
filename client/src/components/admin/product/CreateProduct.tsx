@@ -43,7 +43,7 @@ const CreateProduct = () => {
     fillings,
   } = useAppSelector((state) => state.productReducer);
 
-  const [create, { isLoading: createLoading }] = useCreateProductMutation();
+  const [create] = useCreateProductMutation();
   const [patchProduct] = usePatchProductMutation();
   const { data: fillingsData } = useGetFillingsQuery();
   const { data: categoiesData } = useGetCategoriesQuery();

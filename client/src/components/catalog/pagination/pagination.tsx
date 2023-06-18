@@ -29,7 +29,7 @@ const CatalogPagination = ({
     if (num > 1 && num < 5) {
       return value + " " + words[1];
     }
-    if (num == 1) {
+    if (num === 1) {
       return value + " " + words[0];
     }
     return value + " " + words[2];

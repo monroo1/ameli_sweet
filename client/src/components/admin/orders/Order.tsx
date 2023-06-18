@@ -11,7 +11,6 @@ import {
   setDelivery,
   setPayment,
   setDate,
-  setOrder,
 } from "../../../store/reducers/OrderSlice";
 import dayjs from "dayjs";
 import { ICategory } from "../../../utils/interface/category";
@@ -49,7 +48,10 @@ const ProductCardOrder = ({
   return (
     <div className="create-order--product">
       <div className="create-order--product--image">
-        <img src={API_URL + item.product.images[0].href} />
+        <img
+          src={API_URL + item.product.images[0].href}
+          alt={item.product.images[0].name}
+        />
       </div>
       <div className="create-order--product--content">
         <h4 className="create-order--product--content--title">
@@ -124,14 +126,13 @@ const OrderPageAdmin = () => {
 
   const { id } = useParams();
 
-  const { data: order, isLoading: isLoadingOrder } = useGetOrderUserQuery(id!);
+  const { data, isLoading: isLoadingOrder } = useGetOrderUserQuery(id!);
 
   const { data: categories, isLoading: isLoadingCategoies } =
     useGetCategoriesQuery();
   const [saveOrder, { isLoading: isLoadingPatchOrder }] =
     usePatchOrderMutation();
-  const [patchStatusOrder, { isLoading: isLoadingPatchStatusOrder }] =
-    usePatchOrderStatusMutation();
+  const [patchStatusOrder] = usePatchOrderStatusMutation();
 
   const handleChangeDelivery = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setDelivery(event.target.value === "false" ? false : true));

@@ -11,9 +11,9 @@ import { DndProvider, XYCoord, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useCallback, useRef } from "react";
 import update from "immutability-helper";
+import { IAddImages } from "../../utils/interface/file";
 
 import "./addImages.scss";
-import { IAddImages } from "../../utils/interface/file";
 
 const ItemTypes = {
   CARD: "card",
@@ -80,7 +80,7 @@ export const CardImage = ({
       data-handler-id={handlerId}
       style={{ opacity }}
     >
-      <img src={API_URL + el.href} />
+      <img src={API_URL + el.href} alt={el.name} />
       <button
         onClick={() => deleteImage(el.href)}
         className="image-container--item--btn"
@@ -99,83 +99,81 @@ export const AddImages = ({
   moveImage,
   data,
 }: IAddImages) => {
-  {
-    const dispatch = useAppDispatch();
-    const formData = new FormData();
-    const [download, { isLoading: downloadLoading }] = useDownloadMutation();
-    const [remove, { isLoading: removeLoading }] = useRemoveImageMutation();
+  const dispatch = useAppDispatch();
+  const formData = new FormData();
+  const [download, { isLoading: downloadLoading }] = useDownloadMutation();
+  const [remove] = useRemoveImageMutation();
 
-    const moveCard = useCallback(
-      (dragIndex: number, hoverIndex: number, data: any) => {
-        let arr = [...data];
-        dispatch(
-          moveImage(
-            update(arr, {
-              $splice: [
-                [dragIndex, 1],
-                [hoverIndex, 0, data[dragIndex]],
-              ],
-            })
-          )
-        );
-      },
-      []
-    );
+  const moveCard = useCallback(
+    (dragIndex: number, hoverIndex: number, data: any) => {
+      let arr = [...data];
+      dispatch(
+        moveImage(
+          update(arr, {
+            $splice: [
+              [dragIndex, 1],
+              [hoverIndex, 0, data[dragIndex]],
+            ],
+          })
+        )
+      );
+    },
+    []
+  );
 
-    const renderCard = useCallback(
-      (card: any, index: number, data: any, deleteImage: Function) => {
-        return (
-          <CardImage
-            key={index}
-            index={index}
-            id={index}
-            el={card}
-            moveCard={moveCard}
-            data={data}
-            deleteImage={deleteImage}
-          />
-        );
-      },
-      []
-    );
-
-    const downloadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLInputElement;
-      const file = target.files![0];
-      formData.append("image", file);
-      const res = await download(formData).unwrap();
-      dispatch(addImage(res));
-    };
-
-    const deleteImage = async (href: string) => {
-      await remove(href.substr(9)).unwrap();
-      dispatch(removeImage(href));
-    };
-
-    return (
-      <div className="add-images">
-        <input
-          type="file"
-          hidden
-          id="down-file"
-          disabled={downloadLoading}
-          onChange={(e) => downloadImage(e)}
+  const renderCard = useCallback(
+    (card: any, index: number, data: any, deleteImage: Function) => {
+      return (
+        <CardImage
+          key={index}
+          index={index}
+          id={index}
+          el={card}
+          moveCard={moveCard}
+          data={data}
+          deleteImage={deleteImage}
         />
-        {downloadLoading ? (
-          <div>загрузка...</div>
-        ) : (
-          <label htmlFor="down-file" className="add-image">
-            Добавить фото
-          </label>
-        )}
+      );
+    },
+    []
+  );
 
-        <div className="image-container">
-          <DndProvider backend={HTML5Backend}>
-            {data.map((card, i) => renderCard(card, i, data, deleteImage))}
-          </DndProvider>
-        </div>
+  const downloadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const target = e.currentTarget as HTMLInputElement;
+    const file = target.files![0];
+    formData.append("image", file);
+    const res = await download(formData).unwrap();
+    dispatch(addImage(res));
+  };
+
+  const deleteImage = async (href: string) => {
+    await remove(href.substr(9)).unwrap();
+    dispatch(removeImage(href));
+  };
+
+  return (
+    <div className="add-images">
+      <input
+        type="file"
+        hidden
+        id="down-file"
+        disabled={downloadLoading}
+        onChange={(e) => downloadImage(e)}
+      />
+      {downloadLoading ? (
+        <div>загрузка...</div>
+      ) : (
+        <label htmlFor="down-file" className="add-image">
+          Добавить фото
+        </label>
+      )}
+
+      <div className="image-container">
+        <DndProvider backend={HTML5Backend}>
+          {data.map((card, i) => renderCard(card, i, data, deleteImage))}
+        </DndProvider>
       </div>
-    );
-  }
+    </div>
+  );
 };

@@ -11,7 +11,7 @@ import {
 import { setLogout } from "../../store/reducers/AuthSlice";
 import { AiOutlineCheck } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import uuid from "react-uuid";
 import dayjs from "dayjs";
 import { IOrder } from "../../utils/interface/order";
@@ -28,14 +28,12 @@ import "./profile.scss";
 
 const PersonalPage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const user = useAppSelector((state) => state.authReducer);
   const [logout] = useLogoutMutation();
   const { data: orders, isLoading } = useGetOrdersUserQuery();
 
-  const [pay, { isLoading: isLoadingPay }] = usePaymentOrderMutation();
-  const [patchOrder, { isLoading: isLoadingPatchOrder }] =
-    usePatchOrderMutation();
+  const [pay] = usePaymentOrderMutation();
+  const [patchOrder] = usePatchOrderMutation();
   const [checkPaymentOrder] = useCheckPaymentOrderMutation();
 
   function morph(int: number) {
@@ -47,15 +45,7 @@ const PersonalPage = () => {
     ];
   }
 
-  const handlePayOrder = async ({
-    id,
-    price,
-    description,
-  }: {
-    id: string;
-    price: number;
-    description: string;
-  }) => {
+  const handlePayOrder = async ({ id }: { id: string }) => {
     const res = await pay({ id }).unwrap();
     sessionStorage.setItem("paymentId", res.id);
     await patchOrder({
@@ -210,8 +200,6 @@ const PersonalPage = () => {
                         onClick={() =>
                           handlePayOrder({
                             id: order._id,
-                            price: order.cost,
-                            description: `Заказ ${order._id}`,
                           })
                         }
                         sx={{

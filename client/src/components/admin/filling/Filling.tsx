@@ -40,7 +40,7 @@ export const FillingCreate = () => {
 
   const handleCreate = async () => {
     if (!!filling._id) {
-      const res = await patchedFilling({
+      await patchedFilling({
         id: filling._id,
         body: {
           name: filling.name,
@@ -50,13 +50,12 @@ export const FillingCreate = () => {
         },
       });
     } else {
-      const res = await createFiling({
+      await createFiling({
         name: filling.name,
         description: filling.description,
         images: filling.images,
         price: filling.price,
       });
-      console.log(res);
     }
   };
 
@@ -101,8 +100,7 @@ export const FillingList = () => {
   const navigate = useNavigate();
   const { data } = useGetFillingsQuery();
 
-  const [deleteFilling, { isLoading: deleteFillingLoading }] =
-    useDeleteFillingMutation();
+  const [deleteFilling] = useDeleteFillingMutation();
 
   const handlePatchFilling = (el: IFilling) => {
     dispatch(
